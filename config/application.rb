@@ -70,5 +70,10 @@ module Awp
 
     # This makes precompilation faster and Heroku requires this to be false
     config.assets.initialize_on_precompile = false
+
+    config.assets.precompile += %w(
+      reset.css
+      fonts.css
+    )
   end
 end

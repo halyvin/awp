@@ -1,14 +1,30 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="en-US">
 <head>
-  <title>Awp</title>
+  <meta charset="UTF-8">
+  <title></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="sitewrap">
+    <header class="header" role="header">
+      <div class="loginbar">
+        Привет, <a href="account_settings.html" class="username">Владимир!</a>
+        <div class="button">Выход</div>
+      </div>
+      <h1 class="sitename">AWP v.1</h1>
+      <nav class="navigation" role="navigation">
+        <ul>
+          <li class="navigation_tab current"><a href="#" class="navigation_tab_link">Текущие заявки</a></li>
+          <li class="navigation_tab"><a href="history.html" class="navigation_tab_link">История заявок</a></li>
+        </ul>
+      </nav>
+      <time class="real_time"></time>
+    </header>
 
-<%= yield %>
+    <%= yield %>
 
 </body>
 </html>

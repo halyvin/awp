@@ -14,7 +14,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.6'
   gem 'coffee-rails', '~> 3.2.2'
 
-  gem 'autoprefixer-rails'
+  # gem 'autoprefixer-rails'
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
