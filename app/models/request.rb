@@ -22,4 +22,16 @@ class Request < ActiveRecord::Base
     end
     answer
   end
+
+  def as_json(options)
+    {
+      id: id,
+      user: user.username,
+      day: day.to_s,
+      time: time,
+      body: body,
+      address: address,
+      workers: workers.each.map {|w| [w.name, w.id] }
+    }
+  end
 end

@@ -10,6 +10,8 @@ Awp::Application.routes.draw do
   get "cabinet" => "cabinet#edit", as: "cabinet"
   put "cabinet" => "cabinet#update"
 
+  resources :requests, except: [ :index, :new, :edit ]
+
   get "print" => "requests#print", as: "requests_print"
   get "history" => "requests#history", as: "requests_history"
 

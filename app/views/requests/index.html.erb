@@ -27,7 +27,7 @@
     </thead>
     <tbody class="actual_tasks__tbody">
       <% @requests.each do |req| %>
-        <tr class="actual_tasks__tr <%= req.string_of_time_position %>">
+        <tr class="actual_tasks__tr <%= req.string_of_time_position %>" data-request-id="<%= req.id %>">
           <td class="actual_tasks__td"><input type="checkbox"></td>
           <td class="actual_tasks__td"><%= req.id %></td>
           <td class="actual_tasks__td"><%= req.user.username %></td>

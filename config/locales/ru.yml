@@ -3,7 +3,11 @@ ru:
   nope: "Нет"
   cabinet:
     save_success: "Данные успешно сохранены"
-    
+  requests:
+    request_created: "Запрос создан"
+    request_creation_failed: "Не получилось создать запрос"
+    request_updated: "Запрос успешно обновлен"
+    request_updation_failed: "Обновление запроса завершилось ошибкой"
   activerecord:
     models:
       user:
