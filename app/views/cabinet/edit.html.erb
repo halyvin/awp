@@ -1,6 +1,6 @@
 <div class="content">
 
-  <% if @user.errors %>
+  <% if @user.errors.any? %>
     <p style="color:red">В формы закрались ошибки</p>
   <% end %>
 

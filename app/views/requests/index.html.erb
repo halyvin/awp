@@ -1,1 +1,197 @@
-<h1>Hello</h1>
+<div class="controls">
+  <a href="<%= requests_print_path %>" class="print button">Распечатать заявки</a>
+  <div class="task_buttons">
+    <!-- <span class="checked_rows"><span class="checked_rows_count">3</span> выбрано:</span> -->
+    <div class="workers_select">Назначить работников
+      <%= render partial: "workers_list", locals: { workers: @workers } %>
+    </div>
+    <div class="button edit creat_task_btn">Создать заявку</div>
+  </div>
+  <div class="clr"></div>
+</div>
+
+<div class="content">
+  <table class="actual_tasks__table">
+    <thead class="actual_tasks__thead">
+      <tr class="actual_tasks__tr">
+        <td class="actual_tasks__td"><input type="checkbox" class="checkall"></td>
+        <td class="actual_tasks__td">№</td>
+        <td class="actual_tasks__td">Логин</td>
+        <td class="actual_tasks__td">Описание заявки</td>
+        <td class="actual_tasks__td">Адрес</td>
+        <td class="actual_tasks__td">Дата и время</td>
+        <td class="actual_tasks__td">Работники</td>
+        <td class="actual_tasks__td"></td>
+      </tr>
+    </thead>
+    <tbody class="actual_tasks__tbody">
+      <tr class="actual_tasks__tr future">
+        <td class="actual_tasks__td"><input type="checkbox"></td>
+        <td class="actual_tasks__td">1</td>
+        <td class="actual_tasks__td">Halyvin</td>
+        <td class="actual_tasks__td">Переобжать линк и свести с ума всех прохожих</td>
+        <td class="actual_tasks__td">ул.Менжинского д.10 кв.195</td>
+        <td class="actual_tasks__td">25.08.2013<br>с 10 до 14</td>
+        <td class="actual_tasks__td">
+          <ul class="actual_tasks__worker_list">
+            <li class="actual_tasks__worker_item" data-id="vanka">Ванька</li>
+          </ul>
+        </td>
+        <td class="actual_tasks__td">
+          <img src="i/complete.png" alt="" class="control_icon complete">
+          <img src="i/edit.png" alt="" class="control_icon edit">
+          <img src="i/delete.png" alt="" class="control_icon delete">
+        </td>
+      </tr>
+      <tr class="actual_tasks__tr today">
+        <td class="actual_tasks__td"><input type="checkbox"></td>
+        <td class="actual_tasks__td">1</td>
+        <td class="actual_tasks__td">Halyvin</td>
+        <td class="actual_tasks__td">Переобжать линк и дать по заставить работать напарника вилами</td>
+        <td class="actual_tasks__td">ул.Менжинского д.10 кв.195</td>
+        <td class="actual_tasks__td">24.08.2013<br>с 10 до 14</td>
+        <td class="actual_tasks__td">
+          <ul class="actual_tasks__worker_list">
+            
+          </ul>
+        </td>
+        <td class="actual_tasks__td">
+          <img src="i/complete.png" alt="" class="control_icon complete">
+          <img src="i/edit.png" alt="" class="control_icon edit">
+          <img src="i/delete.png" alt="" class="control_icon delete">
+        </td>
+      </tr>
+      <tr class="actual_tasks__tr today">
+        <td class="actual_tasks__td"><input type="checkbox"></td>
+        <td class="actual_tasks__td">1</td>
+        <td class="actual_tasks__td">Halyvin</td>
+        <td class="actual_tasks__td">Переобжать линк и прогулятся по лучшим местам вечернего красноярска</td>
+        <td class="actual_tasks__td">ул.Менжинского д.10 кв.195</td>
+        <td class="actual_tasks__td">24.08.2013<br>с 10 до 14</td>
+        <td class="actual_tasks__td">
+          <ul class="actual_tasks__worker_list">
+            
+          </ul>
+        </td>
+        <td class="actual_tasks__td">
+          <img src="i/complete.png" alt="" class="control_icon complete">
+          <img src="i/edit.png" alt="" class="control_icon edit">
+          <img src="i/delete.png" alt="" class="control_icon delete">
+        </td>
+      </tr>
+      <tr class="actual_tasks__tr last">
+        <td class="actual_tasks__td"><input type="checkbox"></td>
+        <td class="actual_tasks__td">1</td>
+        <td class="actual_tasks__td">Halyvin</td>
+        <td class="actual_tasks__td">Переобжать линк</td>
+        <td class="actual_tasks__td">ул.Менжинского д.10 кв.195</td>
+        <td class="actual_tasks__td">22.08.2013<br>с 10 до 14</td>
+        <td class="actual_tasks__td">
+          <ul class="actual_tasks__worker_list">
+            
+          </ul>
+        </td>
+        <td class="actual_tasks__td">
+          <img src="i/complete.png" alt="" class="control_icon complete">
+          <img src="i/edit.png" alt="" class="control_icon edit">
+          <img src="i/delete.png" alt="" class="control_icon delete">
+        </td>
+      </tr>
+    </tbody>
+    <tfoot class="actual_tasks__tfoot">
+      <tr class="actual_tasks__tr">
+        <td class="actual_tasks__td"></td>
+        <td class="actual_tasks__td"></td>
+        <td class="actual_tasks__td"></td>
+        <td class="actual_tasks__td"></td>
+        <td class="actual_tasks__td"></td>
+        <td class="actual_tasks__td"></td>
+        <td class="actual_tasks__td"></td>
+        <td class="actual_tasks__td"></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<% content_for :before_end_of_body do %>
+  <div class="popups_wrap">
+    <div class="popup create_task">
+      <h2 class="popup_title">Создать заявку</h2>
+      <form action="" class="popup_form">
+        <label for="">Описание заявки:</label>
+        <textarea name="" id="" cols="30" rows="5" ></textarea>
+        <label for="">Логин</label>
+        <select name="" id=""></select>
+        <div class="popup_inputbox">
+          <label for="">Дата</label>
+          <input type="date" name="calendar" value="2012-06-01" max="2014-06-04" min="2012-05-29">
+        </div><div class="popup_inputbox">
+          <label for="">Время</label>
+          <select name="" id="">
+            <option value="10:00 - 14:00">10:00 - 14:00</option>
+            <option value="14:00 - 18:00">14:00 - 18:00</option>
+            <option value="18:00 - 19:00">18:00 - 19:00</option>
+          </select>   
+        </div>
+        <ul class="selected_workers_area">
+          <li class="selected_worker">Тюбик</li>
+          <li class="selected_worker">Парасенка</li>
+        </ul>
+        <div class="workers_select">Назначить работников
+          <%= render partial: "workers_list", locals: { workers: @workers } %>
+        </div>
+        <div class="popup_control_buttons">
+          <div class="button cancel">Отменить</div>
+          <input type="submit" value="Сохранить" class="button">
+        </div>
+      </form>
+    </div>
+    <div class="popup edit_task">
+      <h2 class="popup_title">Создать заявку</h2>
+      <form action="" class="popup_form">
+        <label for="">Описание заявки:</label>
+        <textarea name="" id="" cols="30" rows="5" class="popup_textarea"></textarea>
+        <label for="">Логин</label>
+        <select name="" id=""></select>
+        <div class="popup_inputbox">
+          <label for="">Дата</label>
+          <input type="date" name="calendar" value="2012-06-01" max="2014-06-04" min="2012-05-29">
+        </div><div class="popup_inputbox">
+          <label for="">Время</label>
+          <select name="" id="">
+            <option value="10:00 - 14:00">10:00 - 14:00</option>
+            <option value="14:00 - 18:00">14:00 - 18:00</option>
+            <option value="18:00 - 19:00">18:00 - 19:00</option>
+          </select>
+        </div>
+        <ul class="selected_workers_area">
+          <li class="selected_worker">Тюбик</li>
+          <li class="selected_worker">Парасенка</li>
+        </ul>
+        <div class="workers_select">Назначить работников
+          <%= render partial: "workers_list", locals: { workers: @workers } %>
+        </div>
+        <div class="popup_control_buttons">
+          <div class="button cancel">Отменить</div>
+          <input type="submit" value="Сохранить" class="button">
+        </div>
+      </form>
+    </div>
+    <div class="popup delete_task">
+      <h2 class="popup_title">Удалить заявку</h2>
+      <div class="popup_msg">Вы действительно хотите удалить заявку №<span class="task_count">12</span>?</div>
+      <div class="popup_control_buttons">
+        <div class="button cancel">Отменить</div>
+        <input type="submit" value="Удалить" class="button delete">
+      </div>
+    </div>
+    <div class="popup complete_task">
+      <h2 class="popup_title">Закрыть заявку №21</h2>
+      <textarea name="" id="" cols="30" rows="10"></textarea>
+      <div class="popup_control_buttons">
+        <div class="button cancel">Отменить</div>
+        <input type="submit" value="Закрыть" class="button delete">
+      </div>
+    </div>
+  </div>
+<% end %>

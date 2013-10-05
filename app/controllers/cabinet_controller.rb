@@ -10,13 +10,10 @@ class CabinetController < ApplicationController
  
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        logger.info "SAVE OK"
         format.html  { redirect_to(cabinet_path,
                       :notice => I18n.t('cabinet.save_success')) }
         format.json  { head :no_content }
       else
-        logger.debug @user.errors.messages
-
         format.html do
           ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
             if html_tag =~ /\<label/

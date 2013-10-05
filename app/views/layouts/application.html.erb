@@ -11,7 +11,7 @@
   <div class="sitewrap">
     <header class="header" role="header">
       <div class="loginbar">
-        Привет, <a href="<%= cabinet_path %>" class="username"><%= current_user.name.present? ? current_user.name : "Владимир" %></a>
+        Привет, <a href="<%= cabinet_path %>" class="username"><%= current_user.name.present? ? current_user.name : current_user.username %></a>
         <a class="button" href="<%= destroy_user_session_path %>" data-method="delete">Выход</a>
       </div>
       <h1 class="sitename">AWP v.1</h1>
@@ -33,6 +33,8 @@
     <%= yield %>
 
   </div>
+
+  <%= yield :before_end_of_body %>
 
 </body>
 </html>
