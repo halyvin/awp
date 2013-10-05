@@ -7,7 +7,7 @@ class Request < ActiveRecord::Base
 
   validates :user, :day, presence: true
 
-  default_scope order('requests.day desc, requests.id desc')
+  default_scope order('requests.day desc, requests.id asc')
   scope :actual, where(closed: false)
 
   def string_of_time_position

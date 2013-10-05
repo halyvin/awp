@@ -1,46 +1,42 @@
-<ul class="tasks_list">
-  <li class="task">
-    <div class="task_title">Заявка №123</div>
-    <div class="task__row">Логин: <span>Braer</span></div>
-    <div class="task__row">Адрес: <span>ул.Гладкова д.82 кв.123</span></div>
-    <div class="task__row">Назначенное время: <span>с 10:00 до 14:00</span></div>
-    <div class="task__row">Назначенные сотрудники: Тюбик, Левин</div>
-    <div class="task__row">Описание заявки:
-      <div class="mission">
-        Был сломан интернет неизвестными хакерами
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% if @requests.any? %>
+  <ul class="tasks_list">
+    <% @requests.each do |req| %>
+    <li class="task">
+      <div class="task_title">Заявка №<%= req.id %></div>
+      <div class="task__row">Логин: <span><%= req.user.username %></span></div>
+      <div class="task__row">Адрес: <span><%= req.address %></span></div>
+      <div class="task__row">Назначенная дата: <span><%= I18n.l(req.day) %></span></div>
+      <div class="task__row">Назначенное время: <span><%= req.time %></span></div>
+      <div class="task__row">Назначенные сотрудники: <%= req.workers.map {|w| w.name }.join(", ") %></div>
+      <div class="task__row">Описание заявки:
+        <div class="mission">
+          <%= req.body %>
+        </div>
       </div>
-    </div>
-    <div class="task__row">
-      Выполненные работы:
-      <div class="mission_complite">
-      _________________________________________________________<br>
-      _________________________________________________________
+      <div class="task__row">
+        Выполненные работы:
+        <div class="mission_complite">
+        _________________________________________________________<br>
+        _________________________________________________________
+        </div>
       </div>
-    </div>
-    <div class="task__row">
-      Время: ______________ / Подпись клиента: ____________________
-    </div>
-  </li>
-  <li class="task">
-    <div class="task_title">Заявка №124</div>
-    <div class="task__row">Логин: <span>Braer</span></div>
-    <div class="task__row">Адрес: <span>ул.Гладкова д.82 кв.123</span></div>
-    <div class="task__row">Назначенное время: <span>с 10:00 до 14:00</span></div>
-    <div class="task__row">Назначенные сотрудники: Тюбик, Левин</div>
-    <div class="task__row">Описание заявки:
-      <div class="mission">
-        Был сломан интернет неизвестными хакерами
+      <div class="task__row">
+        Время: ______________ / Подпись клиента: ____________________
       </div>
-    </div>
-    <div class="task__row">
-      Выполненные работы:
-      <div class="mission_complite">
-      _________________________________________________________<br>
-      _________________________________________________________
-      </div>
-    </div>
-    <div class="task__row">
-      Время: ______________ / Подпись клиента: ____________________
-    </div>
-  </li>
-</ul>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
+
+</body>
+</html>

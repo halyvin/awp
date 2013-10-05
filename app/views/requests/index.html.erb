@@ -26,16 +26,14 @@
       </tr>
     </thead>
     <tbody class="actual_tasks__tbody">
-      <% counter = 0 %>
       <% @requests.each do |req| %>
-      <% counter += 1 %>
         <tr class="actual_tasks__tr <%= req.string_of_time_position %>">
           <td class="actual_tasks__td"><input type="checkbox"></td>
-          <td class="actual_tasks__td"><%= counter %></td>
+          <td class="actual_tasks__td"><%= req.id %></td>
           <td class="actual_tasks__td"><%= req.user.username %></td>
           <td class="actual_tasks__td"><%= req.body %></td>
           <td class="actual_tasks__td"><%= req.address %></td>
-          <td class="actual_tasks__td"><%= req.day.to_s %><br><%= req.time %></td>
+          <td class="actual_tasks__td"><%= I18n.l(req.day) %><br><%= req.time %></td>
           <td class="actual_tasks__td">
             <ul class="actual_tasks__worker_list">
               <% req.workers.each do |wrk| %>

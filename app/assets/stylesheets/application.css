@@ -10,6 +10,7 @@
  *
  *= require popapilus
  *= require style
+ *= require print
  *= require_self
  *- don't require_tree .
  */

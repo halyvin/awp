@@ -11,6 +11,8 @@ class RequestsController < ApplicationController
   end
 
   def print
+    @requests = Request.actual.includes(:workers)
+    render layout: false
   end
 
   private
