@@ -11,6 +11,7 @@
 </div>
 
 <div class="content">
+  <% if @requests.any? %>
   <table class="actual_tasks__table">
     <thead class="actual_tasks__thead">
       <tr class="actual_tasks__tr">
@@ -25,78 +26,30 @@
       </tr>
     </thead>
     <tbody class="actual_tasks__tbody">
-      <tr class="actual_tasks__tr future">
-        <td class="actual_tasks__td"><input type="checkbox"></td>
-        <td class="actual_tasks__td">1</td>
-        <td class="actual_tasks__td">Halyvin</td>
-        <td class="actual_tasks__td">Переобжать линк и свести с ума всех прохожих</td>
-        <td class="actual_tasks__td">ул.Менжинского д.10 кв.195</td>
-        <td class="actual_tasks__td">25.08.2013<br>с 10 до 14</td>
-        <td class="actual_tasks__td">
-          <ul class="actual_tasks__worker_list">
-            <li class="actual_tasks__worker_item" data-id="vanka">Ванька</li>
-          </ul>
-        </td>
-        <td class="actual_tasks__td">
-          <img src="i/complete.png" alt="" class="control_icon complete">
-          <img src="i/edit.png" alt="" class="control_icon edit">
-          <img src="i/delete.png" alt="" class="control_icon delete">
-        </td>
-      </tr>
-      <tr class="actual_tasks__tr today">
-        <td class="actual_tasks__td"><input type="checkbox"></td>
-        <td class="actual_tasks__td">1</td>
-        <td class="actual_tasks__td">Halyvin</td>
-        <td class="actual_tasks__td">Переобжать линк и дать по заставить работать напарника вилами</td>
-        <td class="actual_tasks__td">ул.Менжинского д.10 кв.195</td>
-        <td class="actual_tasks__td">24.08.2013<br>с 10 до 14</td>
-        <td class="actual_tasks__td">
-          <ul class="actual_tasks__worker_list">
-            
-          </ul>
-        </td>
-        <td class="actual_tasks__td">
-          <img src="i/complete.png" alt="" class="control_icon complete">
-          <img src="i/edit.png" alt="" class="control_icon edit">
-          <img src="i/delete.png" alt="" class="control_icon delete">
-        </td>
-      </tr>
-      <tr class="actual_tasks__tr today">
-        <td class="actual_tasks__td"><input type="checkbox"></td>
-        <td class="actual_tasks__td">1</td>
-        <td class="actual_tasks__td">Halyvin</td>
-        <td class="actual_tasks__td">Переобжать линк и прогулятся по лучшим местам вечернего красноярска</td>
-        <td class="actual_tasks__td">ул.Менжинского д.10 кв.195</td>
-        <td class="actual_tasks__td">24.08.2013<br>с 10 до 14</td>
-        <td class="actual_tasks__td">
-          <ul class="actual_tasks__worker_list">
-            
-          </ul>
-        </td>
-        <td class="actual_tasks__td">
-          <img src="i/complete.png" alt="" class="control_icon complete">
-          <img src="i/edit.png" alt="" class="control_icon edit">
-          <img src="i/delete.png" alt="" class="control_icon delete">
-        </td>
-      </tr>
-      <tr class="actual_tasks__tr last">
-        <td class="actual_tasks__td"><input type="checkbox"></td>
-        <td class="actual_tasks__td">1</td>
-        <td class="actual_tasks__td">Halyvin</td>
-        <td class="actual_tasks__td">Переобжать линк</td>
-        <td class="actual_tasks__td">ул.Менжинского д.10 кв.195</td>
-        <td class="actual_tasks__td">22.08.2013<br>с 10 до 14</td>
-        <td class="actual_tasks__td">
-          <ul class="actual_tasks__worker_list">
-            
-          </ul>
-        </td>
-        <td class="actual_tasks__td">
-          <img src="i/complete.png" alt="" class="control_icon complete">
-          <img src="i/edit.png" alt="" class="control_icon edit">
-          <img src="i/delete.png" alt="" class="control_icon delete">
-        </td>
-      </tr>
+      <% counter = 0 %>
+      <% @requests.each do |req| %>
+      <% counter += 1 %>
+        <tr class="actual_tasks__tr <%= req.string_of_time_position %>">
+          <td class="actual_tasks__td"><input type="checkbox"></td>
+          <td class="actual_tasks__td"><%= counter %></td>
+          <td class="actual_tasks__td"><%= req.user.username %></td>
+          <td class="actual_tasks__td"><%= req.body %></td>
+          <td class="actual_tasks__td"><%= req.address %></td>
+          <td class="actual_tasks__td"><%= req.day.to_s %><br><%= req.time %></td>
+          <td class="actual_tasks__td">
+            <ul class="actual_tasks__worker_list">
+              <% req.workers.each do |wrk| %>
+                <li class="actual_tasks__worker_item" data-id="<%= wrk.id %>"><%= wrk.name %></li>
+              <% end %>
+            </ul>
+          </td>
+          <td class="actual_tasks__td">
+            <img src="i/complete.png" alt="" class="control_icon complete">
+            <img src="i/edit.png" alt="" class="control_icon edit">
+            <img src="i/delete.png" alt="" class="control_icon delete">
+          </td>
+        </tr>
+      <% end %>
     </tbody>
     <tfoot class="actual_tasks__tfoot">
       <tr class="actual_tasks__tr">
@@ -111,6 +64,7 @@
       </tr>
     </tfoot>
   </table>
+  <% end %>
 </div>
 
 <% content_for :before_end_of_body do %>

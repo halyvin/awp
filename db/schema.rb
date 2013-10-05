@@ -11,7 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131005190939) do
+ActiveRecord::Schema.define(:version => 20131005194345) do
+
+  create_table "requests", :force => true do |t|
+    t.integer  "user_id",                         :null => false
+    t.boolean  "closed",       :default => false, :null => false
+    t.string   "body"
+    t.string   "address"
+    t.date     "day"
+    t.string   "time"
+    t.string   "close_reason"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "requests", ["closed"], :name => "index_requests_on_closed"
+  add_index "requests", ["day"], :name => "index_requests_on_day"
+  add_index "requests", ["user_id"], :name => "index_requests_on_user_id"
+
+  create_table "requests_workers", :force => true do |t|
+    t.integer "request_id"
+    t.integer "worker_id"
+  end
+
+  add_index "requests_workers", ["request_id"], :name => "index_requests_workers_on_request_id"
+  add_index "requests_workers", ["worker_id"], :name => "index_requests_workers_on_worker_id"
 
   create_table "users", :force => true do |t|
     t.string   "username",            :default => "", :null => false

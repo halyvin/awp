@@ -3,6 +3,7 @@ class RequestsController < ApplicationController
 
   def index
     @active_tab = "currents"
+    @requests = Request.actual.includes(:workers)
   end
 
   def history
