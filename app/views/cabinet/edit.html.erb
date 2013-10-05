@@ -1,4 +1,9 @@
 <div class="content">
+
+  <% if @user.errors %>
+    <p style="color:red">В формы закрались ошибки</p>
+  <% end %>
+
   <%= form_for(@user, :url => cabinet_path, method: "put", html: { :class => "cabinetform" }) do |f| %>
     <ul class="settings">
       <li class="settings_item">
@@ -22,12 +27,25 @@
         <%= f.label :email %>
         <%= f.email_field :email %>
       </li>
-      <li class="settings_item">
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-        <%= f.password_field :password_confirmation %>
-      </li>
     </ul>
     <button class="button">Сохранить</button>
   <% end %>
+
+  <hr style="margin: 32px 0;">
+
+  <%= form_for(@user, :url => cabinet_path, method: "put", html: { :class => "cabinetform" }) do |f| %>
+    <ul class="settings">
+      
+      <li class="settings_item">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </li>
+      <li class="settings_item">
+        <%= f.label :password_confirmation, "Подтверждение" %>
+        <%= f.password_field :password_confirmation %>
+      </li>
+    </ul>
+    <button class="button">Изменить пароль</button>
+  <% end %>
+
 </div>
