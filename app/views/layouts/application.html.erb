@@ -11,14 +11,14 @@
   <div class="sitewrap">
     <header class="header" role="header">
       <div class="loginbar">
-        Привет, <a href="account_settings.html" class="username">Владимир!</a>
+        Привет, <a href="<%= cabinet_path %>" class="username"><%= current_user.name.present? ? current_user.name : "Владимир" %></a>
         <a class="button" href="<%= destroy_user_session_path %>" data-method="delete">Выход</a>
       </div>
       <h1 class="sitename">AWP v.1</h1>
       <nav class="navigation" role="navigation">
         <ul>
-          <li class="navigation_tab current"><a href="#" class="navigation_tab_link">Текущие заявки</a></li>
-          <li class="navigation_tab"><a href="history.html" class="navigation_tab_link">История заявок</a></li>
+          <li class="navigation_tab current"><a href="<%= root_path %>" class="navigation_tab_link">Текущие заявки</a></li>
+          <li class="navigation_tab"><a href="<%= requests_history_path %>" class="navigation_tab_link">История заявок</a></li>
         </ul>
       </nav>
       <time class="real_time"></time>

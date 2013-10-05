@@ -1,0 +1,31 @@
+ru:
+  yep: "Да"
+  nope: "Нет"
+  cabinet:
+    save_success: "Данные успешно сохранены"
+    
+  activerecord:
+    models:
+      user:
+        one:   "Оператор"
+        few:   "Оператора"
+        many:  "Операторов"
+        other: "Операторы"
+    attributes:
+      user:
+        username: "Логин"
+        email: "Email"
+        encrypted_password: "Шифр. пароль"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        name: "Имя"
+        set_sms: "Уведомлять сотрудников по смс"
+        set_email: "Уведомлять сотрудников по e-mail"
+        remember_me: "Не разлогиниваться по окончании сессии"
+        sign_in_count: "Кол-во входов"
+        current_sign_in_at: "Текущая сессия с"
+        last_sign_in_at: "Дата последней сессии"
+        current_sign_in_ip: "Текущий IP оператора"
+        last_sign_in_ip: "Последний IP оператора"
+        created_at: "Создан"
+        updated_at: "Обновлен"

@@ -1,0 +1,33 @@
+<div class="content">
+  <%= form_for(@user, :url => cabinet_path, method: "put", html: { :class => "cabinetform" }) do |f| %>
+    <ul class="settings">
+      <li class="settings_item">
+        <%= f.check_box :set_sms %> <%= f.label :set_sms, "Уведомлять сотрудников по смс" %>
+      </li>
+      <li class="settings_item">
+        <%= f.check_box :set_email %> <%= f.label :set_email, "Уведомлять сотрудников по e-mail" %>
+      </li>
+      <li class="settings_item">
+        <%= f.check_box :remember_me %> <%= f.label :remember_me, "Не разлогиниваться по окончании сессии" %>
+      </li>
+      <li class="settings_item">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </li>
+      <li class="settings_item">
+        <%= f.label :username %>
+        <%= f.text_field :username %>
+      </li>
+      <li class="settings_item">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </li>
+      <li class="settings_item">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        <%= f.password_field :password_confirmation %>
+      </li>
+    </ul>
+    <button class="button">Сохранить</button>
+  <% end %>
+</div>
