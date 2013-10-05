@@ -17,8 +17,9 @@
       <h1 class="sitename">AWP v.1</h1>
       <nav class="navigation" role="navigation">
         <ul>
-          <li class="navigation_tab current"><a href="<%= root_path %>" class="navigation_tab_link">Текущие заявки</a></li>
-          <li class="navigation_tab"><a href="<%= requests_history_path %>" class="navigation_tab_link">История заявок</a></li>
+          <% actab = @active_tab ? @active_tab : nil %>
+          <li class="navigation_tab<%= actab == 'currents' ? ' current' : '' %>"><a href="<%= root_path %>" class="navigation_tab_link">Текущие заявки</a></li>
+          <li class="navigation_tab<%= actab == 'history' ? ' current' : '' %>"><a href="<%= requests_history_path %>" class="navigation_tab_link">История заявок</a></li>
         </ul>
       </nav>
       <time class="real_time"></time>
