@@ -10,8 +10,23 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= reuiqre html5shiv
+//= require html5shiv
 //= require jquery-2.0.3
 //= require jquery_ujs
+//= require jquery.popapilus
 //= require main
 //- don't require_tree .
+
+$(document).ready(function() {
+
+  if ($("#trms").length) {
+    popapilus = $.popapilus({
+      no_overlay: true,
+      fixed: false,
+      show_animation_speed: 800,
+      autoclose_time: 4600
+    });
+    popapilus.show($("#trms").html());
+  }
+
+});
