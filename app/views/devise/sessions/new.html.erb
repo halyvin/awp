@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="sitewrap loginpage">
+    <h1 class="sitename">AWP v.1</h1>
+
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { :class => "loginform" }) do |f| %>
+      <div class="loginform_title">Вход</div>
+      <%= f.label :username, "Логин" %>
+      <%= f.text_field :username, :autofocus => true, id: "login" %>
+
+      <%= f.label :password, "Пароль" %>
+      <%= f.password_field :password, id: "password" %>
+
+      <% if devise_mapping.rememberable? && false -%>
+        <%= f.check_box :remember_me %> <%= f.label :remember_me, "Запомнить меня" %>
+      <% end -%>
+
+      <%= f.submit "Войти", :class => "button edit logbutton" %>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+
+  </div>
+</body>
+</html>

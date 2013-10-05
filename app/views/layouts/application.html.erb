@@ -12,7 +12,7 @@
     <header class="header" role="header">
       <div class="loginbar">
         Привет, <a href="account_settings.html" class="username">Владимир!</a>
-        <div class="button">Выход</div>
+        <a class="button" href="<%= destroy_user_session_path %>" data-method="delete">Выход</a>
       </div>
       <h1 class="sitename">AWP v.1</h1>
       <nav class="navigation" role="navigation">
@@ -23,6 +23,8 @@
       </nav>
       <time class="real_time"></time>
     </header>
+
+    <!-- "flash[:notice]" and "flash[:alert] -->
 
     <%= yield %>
 
