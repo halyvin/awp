@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20131005194345) do
     t.boolean  "closed",       :default => false, :null => false
     t.string   "body"
     t.string   "address"
-    t.date     "day"
+    t.date     "day",                             :null => false
     t.string   "time"
     t.string   "close_reason"
     t.datetime "created_at",                      :null => false
