@@ -12,7 +12,7 @@ Worker.create([
   { name: "Репоух И.", email: "halyvin@gmail.com" },
   { name: "Шупиков Д.", email: "halyvin@gmail.com" },
   { name: "Лихоузов А.", email: "halyvin@gmail.com" }, 
-  { name: "Шупиков Д.", email: "halyvin@gmail.com" },
+  { name: "Шупиков А.", email: "halyvin@gmail.com" },
   { name: "Лоенюк А.", email: "halyvin@gmail.com" },
   { name: "Киселев М.", email: "halyvin@gmail.com" },
   { name: "Жихарев П.", email: "halyvin@gmail.com" },
