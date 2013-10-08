@@ -14,11 +14,13 @@
 //= require jquery-2.0.3
 //= require jquery_ujs
 //= require jquery.popapilus
+//= require requests
 //= require main
 //- don't require_tree .
 
 $(document).ready(function() {
 
+  // notices and alerts from rails app
   if ($("#trms").length) {
     popapilus = $.popapilus({
       no_overlay: true,

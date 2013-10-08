@@ -11,8 +11,7 @@
 </div>
 
 <div class="content">
-  <% if @requests.any? %>
-  <table class="actual_tasks__table">
+  <table class="actual_tasks__table" id="tasks-manager">
     <thead class="actual_tasks__thead">
       <tr class="actual_tasks__tr">
         <td class="actual_tasks__td"><input type="checkbox" class="checkall"></td>
@@ -62,7 +61,6 @@
       </tr>
     </tfoot>
   </table>
-  <% end %>
 </div>
 
 <% content_for :before_end_of_body do %>
@@ -90,7 +88,7 @@
           <li class="selected_worker">Парасенка</li>
         </ul>
         <div class="workers_select">Назначить работников
-          <%= render partial: "workers_list", locals: { workers: @workers } %>
+          <%= render partial: "workers_list", locals: { workers: @workers, prefix: "mp" } %>
         </div>
         <div class="popup_control_buttons">
           <div class="button cancel">Отменить</div>

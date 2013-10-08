@@ -1,5 +1,6 @@
+<%- prefix = prefix || "" %>
 <ul class="workers_list">
   <% workers.each do |worker| %>
-  <li class="worker"><input type="checkbox" id="c<%= worker.id %>"> <label for="c<%= worker.id %>" data-id="<%= worker.id %>"><%= worker.name %></label></li>
+  <li class="worker"><input type="checkbox" id="<%= prefix %>c<%= worker.id %>"> <label for="<%= prefix %>c<%= worker.id %>" data-id="<%= worker.id %>"><%= worker.name %></label></li>
   <% end %>
 </ul>
