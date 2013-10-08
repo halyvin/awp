@@ -181,6 +181,12 @@
     }
 
 
+    this.showOverlay = function( show_options ) {
+      _session_opts = $.extend( {}, options, show_options );
+      if (_session_opts.modal && overlay) { overlay.show(_session_opts); }
+    }
+
+
     this.hide = function() {
       inactivate();
       holder.hide();

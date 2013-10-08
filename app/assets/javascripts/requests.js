@@ -12,20 +12,58 @@ $(document).ready(function(){
     requestPopup.setData($("#request-form-holder").removeClass("template").remove());
 
     var dayDefault = $("#request_day").val();
+    var timeDefault = $("#request_time").val();
 
     function prepareRequestForm( data ) {
-      $("#request_id").val("");
-      $("#request_body").val("");
-      $("#request_client_id").val("");
-      $("#request_day").val(dayDefault);
+      data = data || {};
+      $("#request_id").val(data.id || "");
+      $("#request_body").val(data.body || "");
+      $("#request_client_id").val(data.client_id || "");
+      $("#request_day").val(data.day || dayDefault);
+      $("#request_time").val(data.time || timeDefault);
+
+      // Workers
+      rfm.find(".workers_select input:checked").removeAttr('checked');
+      if (data.workers) {
+        for (var i = 0; i < data.workers.length; i++) {
+          rfm.find("#mpc" + data.workers[i][1]).attr('checked', 'checked');
+        }
+        rfm.find(".workers_select input:checked:last").trigger('change');
+      }
+      else {
+        $("#request_worker_ids").val("");
+        rfm.find(".selected_workers_area").empty();
+      }
     }
     
+    //// Open Create form
     $("#creat_task_btn").click(function(evnt){
       evnt.preventDefault();
       prepareRequestForm();
       requestPopup.show();
       return false;
     });
+
+    //// Open Edit form
+    $('#tasks-manager .control_icon.edit').on('click', function(evnt){
+      evnt.preventDefault();
+      var rid = $(this).parent().parent().attr("data-request-id");
+      requestPopup.showOverlay();
+
+      $.ajax({
+        dataType: "json",
+        url: ( "/requests/" + rid + ".json" ),
+        type: "GET",
+        error: function( jqXHR, textStatus, errorThrown ) {
+          requestPopup.hide();
+        },
+        success: function( data, textStatus, jqXHR ) {
+          prepareRequestForm(data);
+          requestPopup.show();
+        }
+      });
+      return false;
+    })
 
 
     //// Save request

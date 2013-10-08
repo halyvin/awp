@@ -28,6 +28,7 @@ class Request < ActiveRecord::Base
     {
       id: id,
       user: user.username,
+      client_id: client.present? ? client.id : "",
       day: day.to_s,
       time: time,
       body: body,
