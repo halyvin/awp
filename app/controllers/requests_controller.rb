@@ -74,6 +74,26 @@ class RequestsController < ApplicationController
     end
   end
 
+  def complete
+    @request = Request.find(params[:id])
+    reason = params[:request][:close_reason] if params[:request]
+    @request.close_reason = reason if reason.present?
+    @request.closed = true
+
+    respond_to do |format|
+      if @request.save
+        format.html  { redirect_to(root_url,
+                      :notice => I18n.t('requests.request_completed')) }
+        format.json { head :no_content }
+      else
+        format.html  { redirect_to(root_url,
+                      :alert => I18n.t('requests.request_completion_failed')) }
+        format.json  { render :json => @request.errors,
+                      :status => :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def collect_workers

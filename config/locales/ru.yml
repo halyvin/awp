@@ -8,6 +8,8 @@ ru:
     request_creation_failed: "Не получилось создать запрос"
     request_updated: "Запрос успешно обновлен"
     request_updation_failed: "Обновление запроса завершилось ошибкой"
+    request_completed: "Запрос завершен"
+    request_completion_failed: "Завершение запроса вызвало ошибку"
   activerecord:
     models:
       user:

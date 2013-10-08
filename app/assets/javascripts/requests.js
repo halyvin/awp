@@ -2,8 +2,8 @@ $(document).ready(function(){
 
   if ($("#tasks-manager").length) {
 
-    var rfm = $("#request-form");
 
+    ////// REQUEST FORM (CREATE AND EDIT)
     var requestPopup = $.popapilus({
       css_class: 'request-popapilus',
       fixed: false,
@@ -11,11 +11,17 @@ $(document).ready(function(){
     });
     requestPopup.setData($("#request-form-holder").removeClass("template").remove());
 
+    var rfm = $("#request-form");
+
     var dayDefault = $("#request_day").val();
     var timeDefault = $("#request_time").val();
-
     function prepareRequestForm( data ) {
       data = data || {};
+
+      var titleText = "Создать заявку";
+      if (data.id) { titleText = "Редактировать заявку"; }
+      $("#request-form-holder .popup_title").text(titleText);
+
       $("#request_id").val(data.id || "");
       $("#request_body").val(data.body || "");
       $("#request_client_id").val(data.client_id || "");
@@ -106,8 +112,6 @@ $(document).ready(function(){
       return false;
     });
 
-
-
     //// Workers form set
     rfm.find(".workers_select input").change(function() {
       var selecteted = rfm.find(".selected_workers_area");
@@ -121,12 +125,81 @@ $(document).ready(function(){
       $("#request_worker_ids").val(wrkIds);
     });
 
-    // $('.creat_task_btn').on('click', function(){
-    //   $('.create_task').toggle();
-    // })
-    // $('.control_icon.edit').on('click', function(){
-    //   $('.edit_task').toggle();
-    // })
+
+    ////// DELETE REQUEST FORM
+    var deleteRequestPopup = $.popapilus({
+      css_class: 'delete-request-popapilus'
+    });
+    deleteRequestPopup.setData($("#delete-request-holder").removeClass("template").remove());
+    
+    //// Open Create form
+    $('#tasks-manager .control_icon.delete').on('click', function(evnt){
+      evnt.preventDefault();
+      var rid = $(this).parent().parent().attr("data-request-id");
+      $("#delete-request-holder .place-for-id").text(rid);
+      $("#delete_request_id").val(rid);
+      deleteRequestPopup.show();
+      return false;
+    });
+
+    //// Form submit
+    $("#request-delete-form").submit(function(evnt) {
+      evnt.preventDefault();
+      var rid = $("#delete_request_id").val();
+
+      $.ajax({
+        dataType: "json",
+        url: ( "/requests/" + rid + ".json" ),
+        type: "DELETE",
+        error: function( jqXHR, textStatus, errorThrown ) {
+          location.reload();
+        },
+        success: function( data, textStatus, jqXHR ) {
+          location.reload();
+        }
+      });
+      return false;
+    });
+
+
+    ////// COMPLETE REQUEST FORM
+    var completeRequestPopup = $.popapilus({
+      css_class: 'complete-request-popapilus'
+    });
+    completeRequestPopup.setData($("#complete-request-holder").removeClass("template").remove());
+    
+    //// Open Create form
+    $('#tasks-manager .control_icon.complete').on('click', function(evnt){
+      evnt.preventDefault();
+      var rid = $(this).parent().parent().attr("data-request-id");
+      $("#complete-request-holder .place-for-id").text(rid);
+      $("#complete_request_id").val(rid);
+      $("#request_close_reason").val("");
+      completeRequestPopup.show();
+      return false;
+    });
+
+    //// Form submit
+    $("#request-complete-form").submit(function(evnt) {
+      evnt.preventDefault();
+      var rid = $("#complete_request_id").val();
+
+      $.ajax({
+        dataType: "json",
+        url: ( "/requests/" + rid + "/complete.json" ),
+        type: "PUT",
+        data: { "request": { "close_reason": $("#request_close_reason").val() } },
+        error: function( jqXHR, textStatus, errorThrown ) {
+          location.reload();
+        },
+        success: function( data, textStatus, jqXHR ) {
+          location.reload();
+        }
+      });
+      return false;
+    });
+
+
     // $('.control_icon.complete').on('click', function(){
     //   $('.complete_task').toggle();
     // })

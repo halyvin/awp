@@ -103,87 +103,26 @@
   <% end %>
 </div>
 
-<% content_for :before_end_of_body do %>
-<!--
-  <div class="popups_wrap">
-    <div class="popup create_task">
-      <h2 class="popup_title">Создать заявку</h2>
-      <form action="" class="popup_form">
-        <label for="">Описание заявки:</label>
-        <textarea name="" id="" cols="30" rows="5" ></textarea>
-        <label for="">Логин</label>
-        <select name="" id=""></select>
-        <div class="popup_inputbox">
-          <label for="">Дата</label>
-          <input type="date" name="calendar" value="2012-06-01" max="2014-06-04" min="2012-05-29">
-        </div><div class="popup_inputbox">
-          <label for="">Время</label>
-          <select name="" id="">
-            <option value="10:00 - 14:00">10:00 - 14:00</option>
-            <option value="14:00 - 18:00">14:00 - 18:00</option>
-            <option value="18:00 - 19:00">18:00 - 19:00</option>
-          </select>   
-        </div>
-        <ul class="selected_workers_area">
-          <li class="selected_worker">Тюбик</li>
-          <li class="selected_worker">Парасенка</li>
-        </ul>
-        <div class="workers_select">Назначить работников
-          <%= render partial: "workers_list", locals: { workers: @workers, prefix: "mp" } %>
-        </div>
-        <div class="popup_control_buttons">
-          <div class="button cancel">Отменить</div>
-          <input type="submit" value="Сохранить" class="button">
-        </div>
-      </form>
+<div class="template popup delete_task" id="delete-request-holder">
+  <h2 class="popup_title">Удалить заявку</h2>
+  <div class="popup_msg">Вы действительно хотите удалить заявку №<span class="task_count place-for-id">1</span>?</div>
+  <%= form_tag '/requests.json', id: "request-delete-form" do %>
+    <input type="hidden" name="request[id]" id="delete_request_id">
+    <div class="popup_control_buttons">
+      <div class="button cancel close">Отменить</div>
+      <input type="submit" value="Удалить" class="button delete">
     </div>
-    <div class="popup edit_task">
-      <h2 class="popup_title">Создать заявку</h2>
-      <form action="" class="popup_form">
-        <label for="">Описание заявки:</label>
-        <textarea name="" id="" cols="30" rows="5" class="popup_textarea"></textarea>
-        <label for="">Логин</label>
-        <select name="" id=""></select>
-        <div class="popup_inputbox">
-          <label for="">Дата</label>
-          <input type="date" name="calendar" value="2012-06-01" max="2014-06-04" min="2012-05-29">
-        </div><div class="popup_inputbox">
-          <label for="">Время</label>
-          <select name="" id="">
-            <option value="10:00 - 14:00">10:00 - 14:00</option>
-            <option value="14:00 - 18:00">14:00 - 18:00</option>
-            <option value="18:00 - 19:00">18:00 - 19:00</option>
-          </select>
-        </div>
-        <ul class="selected_workers_area">
-          <li class="selected_worker">Тюбик</li>
-          <li class="selected_worker">Парасенка</li>
-        </ul>
-        <div class="workers_select">Назначить работников
-          <%#= render partial: "workers_list", locals: { workers: @workers } %>
-        </div>
-        <div class="popup_control_buttons">
-          <div class="button cancel">Отменить</div>
-          <input type="submit" value="Сохранить" class="button">
-        </div>
-      </form>
+  <% end %>
+</div>
+
+<div class="template popup complete_task" id="complete-request-holder">
+  <h2 class="popup_title">Закрыть заявку №<span class="place-for-id">21</span></h2>
+  <%= form_tag '/requests.json', id: "request-complete-form" do %>
+  <input type="hidden" name="request[id]" id="complete_request_id">
+    <textarea name="request[close_reason]" id="request_close_reason" cols="30" rows="10"></textarea>
+    <div class="popup_control_buttons">
+      <div class="button cancel close">Отменить</div>
+      <input type="submit" value="Закрыть" class="button delete">
     </div>
-    <div class="popup delete_task">
-      <h2 class="popup_title">Удалить заявку</h2>
-      <div class="popup_msg">Вы действительно хотите удалить заявку №<span class="task_count">12</span>?</div>
-      <div class="popup_control_buttons">
-        <div class="button cancel">Отменить</div>
-        <input type="submit" value="Удалить" class="button delete">
-      </div>
-    </div>
-    <div class="popup complete_task">
-      <h2 class="popup_title">Закрыть заявку №21</h2>
-      <textarea name="" id="" cols="30" rows="10"></textarea>
-      <div class="popup_control_buttons">
-        <div class="button cancel">Отменить</div>
-        <input type="submit" value="Закрыть" class="button delete">
-      </div>
-    </div>
-  </div>
--->
-<% end %>
+  <% end %>
+</div>
