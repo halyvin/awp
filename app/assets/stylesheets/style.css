@@ -630,7 +630,19 @@ a:visited {
 				font-weight:bold;
 				}		
 
-
-
+.cabinetform:last-child {
+	margin-bottom:200px;
+	}
+	.cab_label {
+		font-size:14px;
+		min-width:110px;
+		display:inline-block;
+		text-align:right;
+		padding-right:10px; 
+		}
+	.cab_label+input {
+		padding:2px 3px;
+		font:14px/16px Arial;
+		}	
 
 
