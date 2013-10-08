@@ -8,17 +8,15 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Worker.create([
-  { name: "Толик", email: "halyvin@gmail.com" },
-  { name: "Ванька", email: "halyvin@gmail.com" },
-  { name: "Тюбик", email: "halyvin@gmail.com" },
-  { name: "Парасенка", email: "halyvin@gmail.com" }, 
-  { name: "Клон", email: "halyvin@gmail.com" },
-  { name: "Слон", email: "halyvin@gmail.com" },
-  { name: "Яша", email: "halyvin@gmail.com" },
-  { name: "Кислый", email: "halyvin@gmail.com" },
-  { name: "Паха", email: "halyvin@gmail.com" },
-  { name: "Леха", email: "halyvin@gmail.com" },
-  { name: "Серп", email: "halyvin@gmail.com" }
+  { name: "Гой А.", email: "halyvin@gmail.com" },
+  { name: "Репоух И.", email: "halyvin@gmail.com" },
+  { name: "Шупиков Д.", email: "halyvin@gmail.com" },
+  { name: "Лихоузов А.", email: "halyvin@gmail.com" }, 
+  { name: "Шупиков Д.", email: "halyvin@gmail.com" },
+  { name: "Лоенюк А.", email: "halyvin@gmail.com" },
+  { name: "Киселев М.", email: "halyvin@gmail.com" },
+  { name: "Жихарев П.", email: "halyvin@gmail.com" },
+  { name: "Филиппов С.", email: "halyvin@gmail.com" }
 ])
 
 # mu = User.first
