@@ -1,33 +1,34 @@
 <div class="controls">
-  <div class="date_search button">
-    Поиск по дате с:
-    <input type="date" name="calendar" value="2012-06-01" max="2014-06-04" min="2012-05-29">
-    по:
-    <input type="date" name="calendar" value="2012-06-01" max="2014-06-04" min="2012-05-29">
-  </div>
-  <div class="place_search button">
-    Поиск по адресу: <input type="search">
-  </div>
-
-  <div class="task_buttons">
-    <div class="workers_select">Посик по сотрудникам
-      <ul class="workers_list">
-        <li class="worker"><input type="checkbox" id="c1"> <label for="c1" data-id="tolik">Толик</label></li>
-        <li class="worker"><input type="checkbox" id="c2"> <label for="c2" data-id="vanka">Ванька</label></li>
-        <li class="worker"><input type="checkbox" id="c3"> <label for="c3" data-id="tubik">Тюбик</label></li>
-        <li class="worker"><input type="checkbox" id="c4"> <label for="c4" data-id="napaceHka">Парасенка</label></li>
-        <li class="worker"><input type="checkbox" id="c5"> <label for="c5" data-id="clon">Клон</label></li>
-        <li class="worker"><input type="checkbox" id="c6"> <label for="c6" data-id="slon">Слон</label></li>
-        <li class="worker"><input type="checkbox" id="c7"> <label for="c7" data-id="yasha">Яша</label></li>
-        <li class="worker"><input type="checkbox" id="c8"> <label for="c8" data-id="kisliy">Кислый</label></li>
-        <li class="worker"><input type="checkbox" id="c9"> <label for="c9" data-id="paha">Паха</label></li>
-        <li class="worker"><input type="checkbox" id="c10"> <label for="c10" data-id="leha">Леха</label></li>
-        <li class="worker"><input type="checkbox" id="c11"> <label for="c11" data-id="serp">Серп</label></li>
-      </ul>
+  <%= form_tag '', method: "GET", id: "history-filter-form" do %>
+    <div class="date_search button">
+      Поиск по дате с:
+      <% date_for_from = (Date.today - 10.year).strftime('%Y-%m-%d') %>
+      <% date_for_to = (Date.today + 5.year).strftime('%Y-%m-%d') %>
+      <% date_for_from = params[:filter][:date_from] if params[:filter] && params[:filter][:date_from].present? %>
+      <% date_for_to = params[:filter][:date_to] if params[:filter] && params[:filter][:date_to].present? %>
+      <input type="date" name="filter[date_from]" value="<%= date_for_from %>" max="<%= (Date.today + 5.year).strftime('%Y-%m-%d') %>" min="<%= (Date.today - 10.year).strftime('%Y-%m-%d') %>">
+      по:
+      <input type="date" name="filter[date_to]" value="<%= date_for_to %>" max="<%= (Date.today + 5.year).strftime('%Y-%m-%d') %>" min="<%= (Date.today - 10.year).strftime('%Y-%m-%d') %>">
     </div>
-    
-  </div>
-  <div class="clr"></div>
+    <div class="place_search button">
+      Поиск по адресу: <input type="search" name="filter[address]" value="<%= params[:filter] ? params[:filter][:address] : "" %>">
+    </div>
+
+    <div class="task_buttons">
+      <select style="display:none" name="filter[worker_ids][]" id="filter_worker_ids" multiple="multiple">
+        <% seld_opts = [] %>
+        <% seld_opts = params[:filter][:worker_ids] if params[:filter] && params[:filter][:worker_ids].present? %>
+        <% @workers.each do |wr| %>
+          <% seld = seld_opts.include?(wr.id.to_s) %>
+          <option <%= seld ? 'selected="selected" ' : '' %>value="<%= wr.id %>"><%= wr.name %></option>
+        <% end %>
+      </select>
+      <div class="workers_select" data-select-id="filter_worker_ids">Поиcк по сотрудникам
+        <%= render partial: "workers_list", locals: { workers: @workers } %>
+      </div>
+    </div>
+    <div class="clr"></div>
+  <% end %>
 </div>
 
 <div class="content">
@@ -44,58 +45,23 @@
       </tr>
     </thead>
     <tbody class="actual_tasks__tbody">
-      <tr class="actual_tasks__tr">
-        <td class="actual_tasks__td">1</td>
-        <td class="actual_tasks__td">Halyvin</td>
-        <td class="actual_tasks__td">Переобжать линк и свести с ума всех прохожих</td>
-        <td class="actual_tasks__td">Сделано очень много работы</td>
-        <td class="actual_tasks__td">ул.Менжинского д.10 кв.195</td>
-        <td class="actual_tasks__td">25.08.2013<br>с 10 до 14</td>
-        <td class="actual_tasks__td">
-          <ul class="actual_tasks__worker_list">
-            <li class="actual_tasks__worker_item" data-id="vanka">Ванька</li>
-          </ul>
-        </td>
-      </tr>
-      <tr class="actual_tasks__tr">
-        <td class="actual_tasks__td">1</td>
-        <td class="actual_tasks__td">Halyvin</td>
-        <td class="actual_tasks__td">Переобжать линк и дать по заставить работать напарника вилами</td>
-        <td class="actual_tasks__td">Сделано очень много работы</td>
-        <td class="actual_tasks__td">ул.Менжинского д.10 кв.195</td>
-        <td class="actual_tasks__td">24.08.2013<br>с 10 до 14</td>
-        <td class="actual_tasks__td">
-          <ul class="actual_tasks__worker_list">
-            
-          </ul>
-        </td>
-      </tr>
-      <tr class="actual_tasks__tr">
-        <td class="actual_tasks__td">1</td>
-        <td class="actual_tasks__td">Halyvin</td>
-        <td class="actual_tasks__td">Переобжать линк и прогулятся по лучшим местам вечернего красноярска</td>
-        <td class="actual_tasks__td">Сделано очень много работы</td>
-        <td class="actual_tasks__td">ул.Менжинского д.10 кв.195</td>
-        <td class="actual_tasks__td">24.08.2013<br>с 10 до 14</td>
-        <td class="actual_tasks__td">
-          <ul class="actual_tasks__worker_list">
-            
-          </ul>
-        </td>
-      </tr>
-      <tr class="actual_tasks__tr">
-        <td class="actual_tasks__td">1</td>
-        <td class="actual_tasks__td">Halyvin</td>
-        <td class="actual_tasks__td">Переобжать линк</td>
-        <td class="actual_tasks__td">Сделано очень много работы</td>
-        <td class="actual_tasks__td">ул.Менжинского д.10 кв.195</td>
-        <td class="actual_tasks__td">22.08.2013<br>с 10 до 14</td>
-        <td class="actual_tasks__td">
-          <ul class="actual_tasks__worker_list">
-            
-          </ul>
-        </td>
-      </tr>
+      <% @requests.each do |req| %>
+        <tr class="actual_tasks__tr">
+          <td class="actual_tasks__td"><%= req.id %></td>
+          <td class="actual_tasks__td"><%= req.client.present? ? req.client.login : "" %></td>
+          <td class="actual_tasks__td"><%= req.body %></td>
+          <td class="actual_tasks__td"><%= req.close_reason %></td>
+          <td class="actual_tasks__td"><%= req.address %></td>
+          <td class="actual_tasks__td"><%= I18n.l(req.day) %><br><%= req.time %></td>
+          <td class="actual_tasks__td">
+            <ul class="actual_tasks__worker_list">
+              <% req.workers.each do |wrk| %>
+                <li class="actual_tasks__worker_item" data-id="<%= wrk.id %>"><%= wrk.name %></li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
     <tfoot class="actual_tasks__tfoot">
       <tr class="actual_tasks__tr">

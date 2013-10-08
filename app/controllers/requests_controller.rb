@@ -11,6 +11,25 @@ class RequestsController < ApplicationController
   def history
     @active_tab = "history"
     collect_workers
+    @requests = Request.where(closed: true)
+
+    if (params[:filter])
+      if (params[:filter][:date_from].present?)
+        @requests = @requests.where("requests.day >= date(?)", params[:filter][:date_from])
+      end
+      if (params[:filter][:date_to].present?)
+        @requests = @requests.where("requests.day <= date(?)", params[:filter][:date_to])
+      end
+      if (params[:filter][:address].present?)
+        @requests = @requests.where("requests.address LIKE ?", "%#{params[:filter][:address]}%")
+      end
+    end
+    if (params[:filter] && params[:filter][:worker_ids].present?)
+      @requests = @requests.includes(:workers).where(workers: { id: params[:filter][:worker_ids] })
+    else
+      @requests = @requests.includes(:workers).includes(:client)
+    end
+    @requests = @requests.limit(20)
   end
 
   def print

@@ -7,6 +7,7 @@ class CreateRequests < ActiveRecord::Migration
       t.string :body
       t.date :day,          null: false
       t.string :time
+      t.string :address
       t.string :close_reason
 
       t.timestamps

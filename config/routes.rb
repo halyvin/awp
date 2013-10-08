@@ -17,7 +17,7 @@ Awp::Application.routes.draw do
   end
 
   get "print" => "requests#print", as: "requests_print"
-  get "history" => "requests#history", as: "requests_history"
+  match "history" => "requests#history", as: "requests_history"
 
   root :to => 'requests#index'
 

@@ -4,7 +4,12 @@
     <!-- <span class="checked_rows"><span class="checked_rows_count">3</span> выбрано:</span> -->
     
     <!-- TODO
-    <div class="workers_select">Назначить работников
+    <select style="display:none" name="addons[worker_ids]" id="addons_worker_ids" multiple="multiple">
+      <%# @workers.each do |wr| %>
+        <option value="<%#= wr.id %>"><%#= wr.name %></option>
+      <%# end %>
+    </select>
+    <div class="workers_select" data-select-id="addons_worker_ids">Назначить работников
       <%#= render partial: "workers_list", locals: { workers: @workers } %>
     </div>
     -->
@@ -34,7 +39,7 @@
           <td class="actual_tasks__td"><%= req.id %></td>
           <td class="actual_tasks__td"><%= req.client.present? ? req.client.login : "" %></td>
           <td class="actual_tasks__td"><%= req.body %></td>
-          <td class="actual_tasks__td"><%= req.client.present? ? req.client.address : "" %></td>
+          <td class="actual_tasks__td"><%= req.address %></td>
           <td class="actual_tasks__td"><%= I18n.l(req.day) %><br><%= req.time %></td>
           <td class="actual_tasks__td">
             <ul class="actual_tasks__worker_list">
@@ -96,7 +101,7 @@
       <% end %>
     </select>
     <ul class="selected_workers_area"></ul>
-    <div class="workers_select">Назначить работников
+    <div class="workers_select" data-select-id="request_worker_ids">Назначить работников
       <%= render partial: "workers_list", locals: { workers: @workers, prefix: "mp" } %>
     </div>
     <div class="popup_control_buttons">

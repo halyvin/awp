@@ -112,7 +112,7 @@ $(document).ready(function(){
       return false;
     });
 
-    //// Workers form set
+    //// Selects
     rfm.find(".workers_select input").change(function() {
       var selecteted = rfm.find(".selected_workers_area");
       selecteted.empty();
@@ -120,9 +120,7 @@ $(document).ready(function(){
       rfm.find(".workers_select input:checked").each(function(indx, elm) {
         var wrlbl = $(this).next();
         selecteted.append('<li class="selected_worker">' + wrlbl.text() + '</li>');
-        wrkIds.push(wrlbl.attr("data-id"));
       });
-      $("#request_worker_ids").val(wrkIds);
     });
 
 

@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20131005194345) do
     t.string   "body"
     t.date     "day",                             :null => false
     t.string   "time"
+    t.string   "address"
     t.string   "close_reason"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
