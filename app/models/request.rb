@@ -3,8 +3,8 @@ class Request < ActiveRecord::Base
   belongs_to :client
   has_and_belongs_to_many :workers
 
-  attr_accessible :body, :client, :day, :time, :user, :worker_ids,
-                  :closed, :close_reason
+  attr_accessible :body, :client, :client_id, :day, :time, :user, :user_id,
+                  :closed, :close_reason, :worker_ids
 
   validates :user, :day, presence: true
 

@@ -142,6 +142,10 @@
       holder.find(".close").off('click', _close);
     }
 
+    this.setData = function( data ) {
+      if (data) { holder.empty(); holder.append(data); }
+    }
+
 
     this.show = function( data, show_options ) {
       _session_opts = $.extend( {}, options, show_options );

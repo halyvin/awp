@@ -5,6 +5,7 @@ class RequestsController < ApplicationController
     @active_tab = "currents"
     collect_workers
     @requests = Request.actual.includes(:workers)
+    @clients = Client.all
   end
 
   def history

@@ -1,3 +1,12 @@
+.popapilus_overlay {
+  background: #000 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeBAMAAADJHrORAAAAMFBMVEX///8HBwcICAgUFBQXFxcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuanbkAAAAQUlEQVR4nOzOoQ0AIBDF0K5QNiC3wYUN2H8nJPkai6l5prSOdcPU2jckN8mTZEmWZEmW5EFy8f+e/g4AAAD//wMAKnM4yCLdBHkAAAAASUVORK5CYII=') repeat left top;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+  filter: alpha(opacity=10);
+  -moz-opacity: 0.1;
+  -khtml-opacity: 0.1;
+  opacity: 0.1;
+}
+
 .popapilus {
   top: 28px;
   padding: 24px;
@@ -6,3 +15,6 @@
   text-align: center;
   font-weight: bold;
 }
+
+.popup { display:block; position:static; margin:0; }
+.template { display: none; }

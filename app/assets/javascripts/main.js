@@ -37,56 +37,56 @@ $(document).ready(function(){
 	setTimeout(dateView, 1000);
 
 
-	// Selecting workers from table rows
+	// // Selecting workers from table rows
 
-	var workersStack = [];
-	function workersStackCheker(){
-		workersStack = [];
-		var workerscells = $('.actual_tasks__tbody tr.checked .actual_tasks__worker_item');
-		$(workerscells).each(function(){workersStack.push($(this).attr('data-id'))});
-		workersStack = $.unique(workersStack);
-	}
+	// var workersStack = [];
+	// function workersStackCheker(){
+	// 	workersStack = [];
+	// 	var workerscells = $('.actual_tasks__tbody tr.checked .actual_tasks__worker_item');
+	// 	$(workerscells).each(function(){workersStack.push($(this).attr('data-id'))});
+	// 	workersStack = $.unique(workersStack);
+	// }
 
-	$('.actual_tasks__tbody input').on('click', function(){
-		$(this).closest('tr').toggleClass('checked');
-		workersStackCheker();
-		// workersSelectChecker();
-	});
+	// $('.actual_tasks__tbody input').on('click', function(){
+	// 	$(this).closest('tr').toggleClass('checked');
+	// 	workersStackCheker();
+	// 	// workersSelectChecker();
+	// });
 	$('.workers_select').on('click', function(event){
 		$(this).toggleClass('open');
 		$('.workers_list').click(function(event){event.stopPropagation()});
-		workersSelectChecker();
+		// workersSelectChecker();
 	});
-	// $('.workers_select li label').on('click', function(event){
-	// 	var workerscells = $('.actual_tasks__tbody tr.checked .actual_tasks__worker_list');
-	// 	var label = $(this);
-	// 	var input = $(this).closest('li').find('input');
-	// 	if (!input.is(':checked')) {
-	// 		workerscells.find('li').each(function(){
-	// 			if ($(this).attr('data-id'))
+	// // $('.workers_select li label').on('click', function(event){
+	// // 	var workerscells = $('.actual_tasks__tbody tr.checked .actual_tasks__worker_list');
+	// // 	var label = $(this);
+	// // 	var input = $(this).closest('li').find('input');
+	// // 	if (!input.is(':checked')) {
+	// // 		workerscells.find('li').each(function(){
+	// // 			if ($(this).attr('data-id'))
+	// // 		})
+	// // 	}
+	// // 	else {
+
+	// // 	}
+	// // };
+
+
+	// function workersSelectChecker(){
+	// 	// $('.workers_select input').attr('checked', false)
+	// 	$('.workers_select input').removeAttr('checked')
+	// 	for (var i = 0; i < workersStack.length; i++) {
+	// 		var id = workersStack[i];
+	// 		$('.workers_select label').each(function(){
+	// 			console.log(id)
+	// 			if ($(this).attr('data-id')==id) {
+	// 				$(this).closest('li').find('input').attr('checked', true);
+	// 			}
 	// 		})
-	// 	}
-	// 	else {
-
-	// 	}
+	// 	};	
+	// 	console.log(workersStack)	
 	// };
-
-
-	function workersSelectChecker(){
-		// $('.workers_select input').attr('checked', false)
-		$('.workers_select input').removeAttr('checked')
-		for (var i = 0; i < workersStack.length; i++) {
-			var id = workersStack[i];
-			$('.workers_select label').each(function(){
-				console.log(id)
-				if ($(this).attr('data-id')==id) {
-					$(this).closest('li').find('input').attr('checked', true);
-				}
-			})
-		};	
-		console.log(workersStack)	
-	};
-	// workersSelectChecker();
+	// // workersSelectChecker();
 
 
 		// $('.workers_select').on('click', function(event){

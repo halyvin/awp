@@ -96,10 +96,10 @@ clients = Client.create([
 mu = User.first
 
 Request.create([
-  { user: mu, client: clients[23], closed: true, day: Date.parse("2011-06-18"), time: "c 18:00 до 21:00", worker_ids: [3, 4], body: "подключение ограничено", close_reason: "удалили вирус с компьютера пользователя" },
-  { user: mu, client: clients[39], closed: true, day: Date.parse("2011-06-18"), time: "c 18:00 до 21:00", worker_ids: [4, 5], body: "подключить роутер", close_reason: "Настроили и подключили роутер" },
-  { user: mu, client: clients[41], closed: true, day: Date.parse("2012-06-18"), time: "c 10:00 до 14:00", worker_ids: [6, 7], body: "медленный интернет", close_reason: "Объяснили, как работает интернет. Интернет в порядке. Клиенту показалось" },
-  { user: mu, client: clients[20], closed: true, day: Date.parse("2012-12-12"), time: "c 14:00 до 18:00", worker_ids: [2, 3], body: "кошка перегрызла шнур", close_reason: "восстановили кабель" },
-  { user: mu, client: clients[0], closed: true, day: Date.parse("2013-02-18"), time: "c 14:00 до 18:00", worker_ids: [1, 2], body: "нет сетового соединения", close_reason: "произвели монтаж кабельного окончания" },
-  { user: mu, client: clients[43], closed: true, day: Date.parse("2014-01-12"), time: "c 18:00 до 21:00", worker_ids: [8, 9], body: "Из кабеля течет вода", close_reason: "протянули новый кабель" }
+  { user: mu, client: clients[23], closed: true, day: Date.parse("2011-06-18"), time: "c 18 до 21", worker_ids: [3, 4], body: "подключение ограничено", close_reason: "удалили вирус с компьютера пользователя" },
+  { user: mu, client: clients[39], closed: true, day: Date.parse("2011-06-18"), time: "c 18 до 21", worker_ids: [4, 5], body: "подключить роутер", close_reason: "Настроили и подключили роутер" },
+  { user: mu, client: clients[41], closed: true, day: Date.parse("2012-06-18"), time: "c 10 до 14", worker_ids: [6, 7], body: "медленный интернет", close_reason: "Объяснили, как работает интернет. Интернет в порядке. Клиенту показалось" },
+  { user: mu, client: clients[20], closed: true, day: Date.parse("2012-12-12"), time: "c 14 до 18", worker_ids: [2, 3], body: "кошка перегрызла шнур", close_reason: "восстановили кабель" },
+  { user: mu, client: clients[0], closed: true, day: Date.parse("2013-02-18"), time: "c 14 до 18", worker_ids: [1, 2], body: "нет сетового соединения", close_reason: "произвели монтаж кабельного окончания" },
+  { user: mu, client: clients[43], closed: true, day: Date.parse("2014-01-12"), time: "c 18 до 21", worker_ids: [8, 9], body: "Из кабеля течет вода", close_reason: "протянули новый кабель" }
 ])
