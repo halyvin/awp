@@ -55,7 +55,7 @@ $(document).ready(function(){
 
 	function saveWorkersSelectData(wrkSel) {
 		var wrkIds = [];
-    wrkSel.find("input:checked").each(function(indx, elm) {
+    wrkSel.find("input[checked]").each(function(indx, elm) {
       wrkIds.push($(this).next().attr("data-id"));
     });
     var select = $("#" + wrkSel.attr("data-select-id"));

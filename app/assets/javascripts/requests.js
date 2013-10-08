@@ -29,16 +29,15 @@ $(document).ready(function(){
       $("#request_time").val(data.time || timeDefault);
 
       // Workers
-      rfm.find(".workers_select input:checked").removeAttr('checked');
+      $("#request_worker_ids").val("");
+      rfm.find(".selected_workers_area").empty();
+      rfm.find(".workers_select input[checked]").removeAttr('checked');
+
       if (data.workers) {
         for (var i = 0; i < data.workers.length; i++) {
           rfm.find("#mpc" + data.workers[i][1]).attr('checked', 'checked');
         }
-        rfm.find(".workers_select input:checked:last").trigger('change');
-      }
-      else {
-        $("#request_worker_ids").val("");
-        rfm.find(".selected_workers_area").empty();
+        rfm.find(".workers_select input[checked]:last").trigger('change');
       }
     }
     
@@ -117,7 +116,7 @@ $(document).ready(function(){
       var selecteted = rfm.find(".selected_workers_area");
       selecteted.empty();
       var wrkIds = [];
-      rfm.find(".workers_select input:checked").each(function(indx, elm) {
+      rfm.find(".workers_select input[checked]").each(function(indx, elm) {
         var wrlbl = $(this).next();
         selecteted.append('<li class="selected_worker">' + wrlbl.text() + '</li>');
       });
