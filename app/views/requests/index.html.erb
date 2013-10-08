@@ -2,9 +2,12 @@
   <a href="<%= requests_print_path %>" class="print button">Распечатать заявки</a>
   <div class="task_buttons">
     <!-- <span class="checked_rows"><span class="checked_rows_count">3</span> выбрано:</span> -->
+    
+    <!-- TODO
     <div class="workers_select">Назначить работников
-      <%= render partial: "workers_list", locals: { workers: @workers } %>
+      <%#= render partial: "workers_list", locals: { workers: @workers } %>
     </div>
+    -->
     <div class="button edit" id="creat_task_btn">Создать заявку</div>
   </div>
   <div class="clr"></div>
@@ -14,7 +17,7 @@
   <table class="actual_tasks__table" id="tasks-manager">
     <thead class="actual_tasks__thead">
       <tr class="actual_tasks__tr">
-        <td class="actual_tasks__td"><input type="checkbox" class="checkall"></td>
+        <!-- <td class="actual_tasks__td"><input type="checkbox" class="checkall"></td> -->
         <td class="actual_tasks__td">№</td>
         <td class="actual_tasks__td">Логин</td>
         <td class="actual_tasks__td">Описание заявки</td>
@@ -27,7 +30,7 @@
     <tbody class="actual_tasks__tbody">
       <% @requests.each do |req| %>
         <tr class="actual_tasks__tr <%= req.string_of_time_position %>" data-request-id="<%= req.id %>">
-          <td class="actual_tasks__td"><input type="checkbox"></td>
+          <!-- <td class="actual_tasks__td"><input type="checkbox"></td> -->
           <td class="actual_tasks__td"><%= req.id %></td>
           <td class="actual_tasks__td"><%= req.client.present? ? req.client.login : "" %></td>
           <td class="actual_tasks__td"><%= req.body %></td>
@@ -50,7 +53,7 @@
     </tbody>
     <tfoot class="actual_tasks__tfoot">
       <tr class="actual_tasks__tr">
-        <td class="actual_tasks__td"></td>
+        <!-- <td class="actual_tasks__td"></td> -->
         <td class="actual_tasks__td"></td>
         <td class="actual_tasks__td"></td>
         <td class="actual_tasks__td"></td>

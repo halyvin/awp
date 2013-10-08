@@ -13,8 +13,8 @@
     <% @requests.each do |req| %>
     <li class="task">
       <div class="task_title">Заявка №<%= req.id %></div>
-      <div class="task__row">Логин: <span><%= req.user.username %></span></div>
-      <div class="task__row">Адрес: <span><%= req.address %></span></div>
+      <div class="task__row">Логин: <span><%= req.client.present? ? req.client.login : "" %></span></div>
+      <div class="task__row">Адрес: <span><%= req.client.present? ? req.client.address : "" %></span></div>
       <div class="task__row">Назначенная дата: <span><%= I18n.l(req.day) %></span></div>
       <div class="task__row">Назначенное время: <span><%= req.time %></span></div>
       <div class="task__row">Назначенные сотрудники: <%= req.workers.map {|w| w.name }.join(", ") %></div>
