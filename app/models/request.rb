@@ -1,9 +1,10 @@
 class Request < ActiveRecord::Base
   belongs_to :user
-
+  belongs_to :client
   has_and_belongs_to_many :workers
 
-  attr_accessible :address, :body, :day, :time, :user, :worker_ids
+  attr_accessible :body, :client, :day, :time, :user, :worker_ids,
+                  :closed, :close_reason
 
   validates :user, :day, presence: true
 
@@ -30,7 +31,7 @@ class Request < ActiveRecord::Base
       day: day.to_s,
       time: time,
       body: body,
-      address: address,
+      address: client.present? ? client.address  : "",
       workers: workers.each.map {|w| [w.name, w.id] }
     }
   end

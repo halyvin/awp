@@ -13,11 +13,20 @@
 
 ActiveRecord::Schema.define(:version => 20131005194345) do
 
+  create_table "clients", :force => true do |t|
+    t.string   "login",      :null => false
+    t.string   "address"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "clients", ["login"], :name => "index_clients_on_login"
+
   create_table "requests", :force => true do |t|
     t.integer  "user_id",                         :null => false
+    t.integer  "client_id"
     t.boolean  "closed",       :default => false, :null => false
     t.string   "body"
-    t.string   "address"
     t.date     "day",                             :null => false
     t.string   "time"
     t.string   "close_reason"
@@ -25,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20131005194345) do
     t.datetime "updated_at",                      :null => false
   end
 
+  add_index "requests", ["client_id"], :name => "index_requests_on_client_id"
   add_index "requests", ["closed"], :name => "index_requests_on_closed"
   add_index "requests", ["day"], :name => "index_requests_on_day"
   add_index "requests", ["user_id"], :name => "index_requests_on_user_id"
@@ -59,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20131005194345) do
 
   create_table "workers", :force => true do |t|
     t.string   "name"
+    t.string   "email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
