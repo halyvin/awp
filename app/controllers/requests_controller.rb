@@ -15,13 +15,25 @@ class RequestsController < ApplicationController
 
     if (params[:filter])
       if (params[:filter][:date_from].present?)
-        @requests = @requests.where("requests.day >= date(?)", params[:filter][:date_from])
+        # Sqlite
+        # @requests = @requests.where("requests.day >= date(?)", params[:filter][:date_from])
+
+        # PostgreSQL
+        @requests = @requests.where("requests.day >= DATE ?", params[:filter][:date_from])
       end
       if (params[:filter][:date_to].present?)
-        @requests = @requests.where("requests.day <= date(?)", params[:filter][:date_to])
+        # Sqlite
+        # @requests = @requests.where("requests.day <= date(?)", params[:filter][:date_to])
+
+        # PostgreSQL
+        @requests = @requests.where("requests.day <= DATE ?", params[:filter][:date_to])
       end
       if (params[:filter][:address].present?)
-        @requests = @requests.where("requests.address LIKE ?", "%#{params[:filter][:address]}%")
+        # Sqlite
+        # @requests = @requests.where("requests.address LIKE ?", "%#{params[:filter][:address]}%")
+
+        # PostgreSQL
+        @requests = @requests.where("requests.address ILIKE ?", "%#{params[:filter][:address]}%")
       end
     end
     if (params[:filter] && params[:filter][:worker_ids].present?)
