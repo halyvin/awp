@@ -15,25 +15,25 @@ class RequestsController < ApplicationController
 
     if (params[:filter])
       if (params[:filter][:date_from].present?)
-        # Sqlite
-        # @requests = @requests.where("requests.day >= date(?)", params[:filter][:date_from])
-
-        # PostgreSQL
-        @requests = @requests.where("requests.day >= DATE ?", params[:filter][:date_from])
+        if Rails.env.production? # PostgreSQL
+          @requests = @requests.where("requests.day >= DATE ?", params[:filter][:date_from])
+        else # Sqlite
+          @requests = @requests.where("requests.day >= date(?)", params[:filter][:date_from])
+        end
       end
       if (params[:filter][:date_to].present?)
-        # Sqlite
-        # @requests = @requests.where("requests.day <= date(?)", params[:filter][:date_to])
-
-        # PostgreSQL
-        @requests = @requests.where("requests.day <= DATE ?", params[:filter][:date_to])
+        if Rails.env.production? # PostgreSQL
+          @requests = @requests.where("requests.day <= DATE ?", params[:filter][:date_to])
+        else # Sqlite
+          @requests = @requests.where("requests.day <= date(?)", params[:filter][:date_to])
+        end
       end
       if (params[:filter][:address].present?)
-        # Sqlite
-        # @requests = @requests.where("requests.address LIKE ?", "%#{params[:filter][:address]}%")
-
-        # PostgreSQL
-        @requests = @requests.where("requests.address ILIKE ?", "%#{params[:filter][:address]}%")
+        if Rails.env.production? # PostgreSQL
+          @requests = @requests.where("requests.address ILIKE ?", "%#{params[:filter][:address]}%")
+        else # Sqlite
+          @requests = @requests.where("requests.address LIKE ?", "%#{params[:filter][:address]}%")
+        end        
       end
     end
     if (params[:filter] && params[:filter][:worker_ids].present?)
