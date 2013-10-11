@@ -45,7 +45,13 @@ class RequestsController < ApplicationController
   end
 
   def print
-    @requests = Request.actual.includes(:workers)
+    if params[:rsts]
+      ids_array = params[:rsts].split(",")
+      @requests = Request.where(id: ids_array).includes(:workers)
+    else
+      @requests = Request.actual.includes(:workers)
+    end
+
     render layout: false
   end
 
