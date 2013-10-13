@@ -27,6 +27,7 @@ ru:
         encrypted_password: "Шифр. пароль"
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"
+        observer: "Наблюдатель"
         name: "Имя"
         set_sms: "Уведомлять сотрудников по смс"
         set_email: "Уведомлять сотрудников по e-mail"

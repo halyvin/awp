@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
   has_many :requests, :dependent => :destroy
 
   attr_accessible :email, :name, :password, :password_confirmation, :remember_me,
-                  :set_email, :set_sms, :username
+                  :set_email, :set_sms, :username, :observer
 end

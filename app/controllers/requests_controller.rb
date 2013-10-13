@@ -1,5 +1,7 @@
 class RequestsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :test_user_edit_ability,
+                only: [:assign_workers, :create, :update, :destroy, :complete]
 
   def index
     @active_tab = "currents"
@@ -152,6 +154,10 @@ class RequestsController < ApplicationController
   end
 
   private
+
+  def test_user_edit_ability
+    raise ActionController::InvalidAuthenticityToken if current_user.observer?
+  end
 
   def collect_workers
     @workers = Worker.all

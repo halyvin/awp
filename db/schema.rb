@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20131005194345) do
     t.string   "username",            :default => "", :null => false
     t.string   "email",               :default => "", :null => false
     t.string   "encrypted_password",  :default => "", :null => false
+    t.boolean  "observer"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",       :default => 0,  :null => false
     t.datetime "current_sign_in_at"

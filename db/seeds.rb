@@ -2,6 +2,9 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
+# Add a observer user
+User.create!(name: "Трудяга Работяга", username: "worker", :email => 'worker@aws.com', :password => 'master', :password_confirmation => 'master', observer: true)
+
 Worker.create([
   { name: "Гой А.", email: "halyvin@gmail.com" },
   { name: "Репоух И.", email: "halyvin@gmail.com" },
