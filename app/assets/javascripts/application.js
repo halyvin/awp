@@ -16,7 +16,6 @@
 //= require jquery.popapilus
 //= require workers_select
 //= require requests
-//= require actual_requests_table
 //- don't require_tree .
 
 $(document).ready(function() {
@@ -67,5 +66,12 @@ $(document).ready(function() {
     $('.real_time').html(datestr);
   }
   setTimeout(dateView, 1000);
+
+  //// History form helper
+  if ($("#history_workers_select").length) {
+    $("#history_workers_select").workers_select({
+      afterSelectClose: function() { $("#history-filter-form").submit(); }
+    });
+  }
 
 });

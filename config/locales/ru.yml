@@ -4,12 +4,15 @@ ru:
   cabinet:
     save_success: "Данные успешно сохранены"
   requests:
-    request_created: "Запрос создан"
-    request_creation_failed: "Не получилось создать запрос"
-    request_updated: "Запрос успешно обновлен"
-    request_updation_failed: "Обновление запроса завершилось ошибкой"
-    request_completed: "Запрос завершен"
-    request_completion_failed: "Завершение запроса вызвало ошибку"
+    request_created: "Заявка создана"
+    request_creation_failed: "Не получилось создать заявку"
+    request_updated: "Заявка успешно обновлена"
+    request_updation_failed: "Обновление заявки завершилось ошибкой"
+    request_completed: "Заявка закрыта"
+    request_completion_failed: "Закрытие заявки вызвало ошибку"
+    no_requests_choosed: "Не выбрано ни одной заявки"
+    workers_assigned: "Указанные работники назначены отмеченным зявкам"
+    workers_assignition_failed: "Произошла ошибка при назначении работников"
   activerecord:
     models:
       user:

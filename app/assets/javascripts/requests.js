@@ -2,6 +2,62 @@ $(document).ready(function(){
 
   if ($("#tasks-manager").length) {
 
+    //// Check all boxes in the table
+    $('.checkall').on('click', function(){
+      if($(this).is(':checked')) $('.actual_tasks__tbody input').not(':checked').click();
+      else $('.actual_tasks__tbody input:checked').click();
+    });
+
+    function getCheckedRequestsIDs() {
+      checkedRequestsIDs = [];
+      $("#tasks-manager tbody tr input:checked").each(function(indx, elmnt) {
+        checkedRequestsIDs.push($(this).closest('tr').attr('data-request-id'));
+      });
+      return checkedRequestsIDs;
+    }
+
+    //// Print page opening
+    $("#print_tasks_btn").click(function(evnt) {
+      evnt.preventDefault();
+      var chkids = getCheckedRequestsIDs();
+      if (chkids.length) {
+        window.location = $(this).attr('href') + "?rsts=" + chkids.join(",");
+      }
+      return false;
+    });
+
+    //// Bunch workers assign
+    // TODO make setting workers list before opening
+    $("#mltpl_workers_select").workers_select({
+      beforeSelectOpen: function() {
+        var allWorkersIds = [];
+        $("#tasks-manager tbody tr input:checked").each(function(indx, elmnt) {
+          var reqwrkrs = $(this).closest('tr').attr('data-worker-ids').split(",");
+          for (var i = 0; i < reqwrkrs.length; i++) {
+            if ( allWorkersIds.indexOf( reqwrkrs[i] ) < 0 ) {
+              allWorkersIds.push( reqwrkrs[i] );
+            }
+          }
+        });
+        $("#addons_worker_ids").val( allWorkersIds );
+        this.update();
+      },
+      afterSelectClose: function() {
+        var listofchecked = this.listOfChecked();
+        var chkids = getCheckedRequestsIDs();
+        if ( listofchecked.length || chkids.length ) {
+          var chkwrks = [];
+          for (var i = 0; i < listofchecked.length; i++)
+            { chkwrks.push( listofchecked[i][1] ); }
+          window.location = window.location.protocol + "//" +
+                            window.location.host +
+                            "/requests/assign-workers" +
+                            "?rsts=" + chkids.join(",") +
+                            "&wrks=" + chkwrks.join(",");
+        }
+      }
+    });
+
 
     ////// REQUEST FORM (CREATE AND EDIT)
     var requestPopup = $.popapilus({
@@ -12,6 +68,18 @@ $(document).ready(function(){
     requestPopup.setData($("#request-form-holder").removeClass("template").remove());
 
     var rfm = $("#request-form");
+
+    var workerslist = rfm.find(".workers_select");
+    workerslist.workers_select({
+      onSelectChange: function() {
+        var listofchecked = this.listOfChecked();
+        var selecteted = rfm.find(".selected_workers_area");
+        selecteted.empty();
+        for (var i = 0; i < listofchecked.length; i++) {
+          selecteted.append('<li class="selected_worker">' + listofchecked[i][0] + '</li>');
+        }
+      }
+    });
 
     var dayDefault = $("#request_day").val();
     var timeDefault = $("#request_time").val();
@@ -28,17 +96,16 @@ $(document).ready(function(){
       $("#request_day").val(data.day || dayDefault);
       $("#request_time").val(data.time || timeDefault);
 
-      // Workers
-      $("#request_worker_ids").val("");
-      rfm.find(".selected_workers_area").empty();
-      rfm.find(".workers_select input[checked]").removeAttr('checked');
-
       if (data.workers) {
+        var wrkrsIDs = [];
         for (var i = 0; i < data.workers.length; i++) {
-          rfm.find("#mpc" + data.workers[i][1]).attr('checked', 'checked');
+          wrkrsIDs.push(data.workers[i][1]);
         }
-        rfm.find(".workers_select input[checked]:last").trigger('change');
+        $("#request_worker_ids").val(wrkrsIDs);
+        workerslist.workers_select("update");
       }
+      else { workerslist.workers_select("clear"); }
+      workerslist.workers_select("close");
     }
     
     //// Open Create form
@@ -109,17 +176,6 @@ $(document).ready(function(){
       });
 
       return false;
-    });
-
-    //// Selects
-    rfm.find(".workers_select input").change(function() {
-      var selecteted = rfm.find(".selected_workers_area");
-      selecteted.empty();
-      var wrkIds = [];
-      rfm.find(".workers_select input[checked]").each(function(indx, elm) {
-        var wrlbl = $(this).next();
-        selecteted.append('<li class="selected_worker">' + wrlbl.text() + '</li>');
-      });
     });
 
 
@@ -195,29 +251,5 @@ $(document).ready(function(){
       });
       return false;
     });
-
-
-    // $('.control_icon.complete').on('click', function(){
-    //   $('.complete_task').toggle();
-    // })
-
-    // function removeTask(){
-    //   $('.control_icon.delete').on('click', function(){
-    //     $('.delete_task').show();
-    //     var tridx = $(this).closest($('tr')).index();
-    //     removeButton(tridx);
-    //   })
-    //   function removeButton(tridx){
-    //     $('.button.delete').on('click', function(){
-    //       $('.actual_tasks__tbody tr:eq('+tridx+')').remove();
-    //       $('.delete_task').hide();
-    //     })
-    //   }
-    // }
-    // removeTask();
-
-    // $('.popup .button.cancel').on('click', function(){
-    //   $(this).closest('.popup').toggle();
-    // })
   }
 });

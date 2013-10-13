@@ -26,6 +26,10 @@ class Request < ActiveRecord::Base
     answer
   end
 
+  def set_workers_with_remfun(wrks_ids)
+    self.worker_ids = wrks_ids.map { |wrki| wrki.to_i }
+  end
+
   def as_json(options)
     {
       id: id,

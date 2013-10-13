@@ -11,6 +11,9 @@ Awp::Application.routes.draw do
   put "cabinet" => "cabinet#update"
 
   resources :requests, except: [ :index, :new, :edit ] do
+    collection do
+      get "assign-workers" => "requests#assign_workers"
+    end
     member do
       put "complete"
     end

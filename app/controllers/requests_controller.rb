@@ -4,7 +4,7 @@ class RequestsController < ApplicationController
   def index
     @active_tab = "currents"
     collect_workers
-    @requests = Request.actual.includes(:workers)
+    @requests = Request.actual.includes(:workers).includes(:client)
     @clients = Client.all
   end
 
@@ -53,6 +53,26 @@ class RequestsController < ApplicationController
     end
 
     render layout: false
+  end
+
+  def assign_workers
+    notice_text = I18n.t('requests.workers_assigned')
+    if params[:rsts].present?
+      ids_array = params[:rsts].split(",")
+      wrks_ids = []
+      wrks_ids = params[:wrks].split(",") if params[:wrks]
+      Request.find(ids_array).each do |rq|
+        rq.set_workers_with_remfun(wrks_ids)
+      end
+    else
+      notice_text = I18n.t('requests.no_requests_choosed')
+    end
+
+    respond_to do |format|
+      format.html  { redirect_to(root_url,
+                    :notice => notice_text) }
+      format.json  { head :no_content }
+    end
   end
 
   def show

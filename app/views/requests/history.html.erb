@@ -23,7 +23,7 @@
           <option <%= seld ? 'selected="selected" ' : '' %>value="<%= wr.id %>"><%= wr.name %></option>
         <% end %>
       </select>
-      <div class="workers_select" data-select-id="filter_worker_ids">Поиcк по сотрудникам
+      <div class="workers_select" id="history_workers_select" data-select-id="filter_worker_ids">Поиcк по сотрудникам
         <%= render partial: "workers_list", locals: { workers: @workers } %>
       </div>
     </div>
