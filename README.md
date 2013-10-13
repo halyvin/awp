@@ -30,6 +30,12 @@ Installation
 Последний раз миграции менялись **9 октября 2013, 6:29**.
 
 
+Email
+-----
+
+Для системы оповещения используется email от Яндекса. <awp-application@yandex.ru> : Hfy6834fYfjJ
+
+
 Application workflow
 --------------------
 

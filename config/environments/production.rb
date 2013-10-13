@@ -50,6 +50,13 @@ Awp::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { :host => 'awp.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.yandex.ru",
+    :user_name            => 'awp-application',
+    :password             => 'Hfy6834fYfjJ',
+    :authentication       => 'plain' }
 
   # Enable threaded mode
   # config.threadsafe!

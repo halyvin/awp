@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <% @workers.each do |workr_ac| %>
+      <% worker = workr_ac[0] %>
+      <% worker_action = workr_ac[1] %>
+      <p>
+        <strong>Уважаемый <%= worker.name %></strong>
+        <br>
+        Рады вам сообщить о том, что
+        <% if worker_action == "new" %>вы назначены на работу с заявкой №<%= @request.id %><% end %>
+        <% if worker_action == "removed" %>вас сняли с работы над заявкой №<%= @request.id %><% end %>
+        <% if worker_action == "stay" %>
+          заявка №<%= @request.id %> была изменена<% if @changes.any? %> (<%= @changes.join(", ") %>)<% end %>
+        <% end %>
+      </p>
+      <br>
+    <% end %>
+
+    <p><b>Данные заявки №<%= @request.id %>:</b></p>
+    <table>
+      <tbody>
+        <tr>
+          <td>Логин:</td>
+          <td><%= @request.client.present? ? @request.client.login : "" %></td>
+        </tr>
+        <tr>
+          <td>Адрес:</td>
+          <td><%= @request.address %></td>
+        </tr>
+        <tr>
+          <td>Назначенная дата:</td>
+          <td><%= I18n.l(@request.day) %></td>
+        </tr>
+        <tr>
+          <td>Назначенное время:</td>
+          <td><%= @request.time %></td>
+        </tr>
+        <tr>
+          <td>Назначенные сотрудники:</td>
+          <td><%= @request.workers.map {|w| w.name }.join(", ") %></td>
+        </tr>
+        <tr>
+          <td>Описание заявки:</td>
+          <td><%= @request.body %></td>
+        </tr>
+        <tr>
+          <td>Выполнена?:</td>
+          <td><%= @request.closed? ? "Да" : "Нет" %></td>
+        </tr>
+        <% if @request.closed? %>
+        <tr>
+          <td>Выполненные работы:</td>
+          <td><%= @request.close_reason %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <p>Робот приложения AWP желает вам хорошего дня</p>
+  </body>
+</html>
