@@ -2,13 +2,11 @@
   <%= form_tag '', method: "GET", id: "history-filter-form" do %>
     <div class="date_search button">
       Поиск по дате с:
-      <% date_for_from = (Date.today - 10.year).strftime('%Y-%m-%d') %>
-      <% date_for_to = (Date.today + 5.year).strftime('%Y-%m-%d') %>
-      <% date_for_from = params[:filter][:date_from] if params[:filter] && params[:filter][:date_from].present? %>
-      <% date_for_to = params[:filter][:date_to] if params[:filter] && params[:filter][:date_to].present? %>
-      <input type="date" name="filter[date_from]" value="<%= date_for_from %>" max="<%= (Date.today + 5.year).strftime('%Y-%m-%d') %>" min="<%= (Date.today - 10.year).strftime('%Y-%m-%d') %>">
+      <% date_for_from = (params[:filter] && params[:filter][:date_from].present?) ? params[:filter][:date_from] : "" %>
+      <% date_for_to = (params[:filter] && params[:filter][:date_to].present?) ? params[:filter][:date_to] : ""%>
+      <input id="date-from" type="text" name="filter[date_from]" value="<%= date_for_from %>">
       по:
-      <input type="date" name="filter[date_to]" value="<%= date_for_to %>" max="<%= (Date.today + 5.year).strftime('%Y-%m-%d') %>" min="<%= (Date.today - 10.year).strftime('%Y-%m-%d') %>">
+      <input id="date-to" type="text" name="filter[date_to]" value="<%= date_for_to %>">
     </div>
     <div class="place_search button">
       Поиск по адресу: <input type="search" name="filter[address]" value="<%= params[:filter] ? params[:filter][:address] : "" %>">

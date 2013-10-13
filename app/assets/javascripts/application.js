@@ -13,10 +13,17 @@
 //= require html5shiv
 //= require jquery-2.0.3
 //= require jquery_ujs
+//= require jquery-ui-1.10.3
 //= require jquery.popapilus
 //= require workers_select
 //= require requests
 //- don't require_tree .
+
+var datapicker_defaults = {
+  dateFormat: "yy-mm-dd",
+  dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+  monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+  firstDay: 1 };
 
 $(document).ready(function() {
 
@@ -67,7 +74,22 @@ $(document).ready(function() {
   }
   setTimeout(dateView, 1000);
 
+
+
   //// History form helper
+ $( "#date-from" ).datepicker($.extend({}, datapicker_defaults, {
+    defaultDate: "0",
+    onClose: function( selectedDate ) {
+      $( "#date-to" ).datepicker( "option", "minDate", selectedDate );
+    }
+  }));
+  $( "#date-to" ).datepicker($.extend({}, datapicker_defaults, {
+    defaultDate: "0",
+    onClose: function( selectedDate ) {
+      $( "#date-from" ).datepicker( "option", "maxDate", selectedDate );
+    }
+  }));
+
   if ($("#history_workers_select").length) {
     $("#history_workers_select").workers_select({
       afterSelectClose: function() { $("#history-filter-form").submit(); }

@@ -10,6 +10,7 @@
  *
  *= require style
  *= require print
+ *= require jquery-ui-1.10.3
  *= require popapilus
  *= require_self
  *- don't require_tree .

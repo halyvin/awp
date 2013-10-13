@@ -93,7 +93,7 @@
     </select>
     <div class="popup_inputbox">
       <label for="request_day">Дата</label>
-      <input type="date" name="request[day]" id="request_day" value="<%= Date.today.strftime('%Y-%m-%d') %>" max="<%= (Date.today + 1.year).strftime('%Y-%m-%d') %>" min="<%= Date.today.strftime('%Y-%m-%d') %>">
+      <input type="text" name="request[day]" id="request_day" value="<%= Date.today.strftime('%Y-%m-%d') %>">
     </div><div class="popup_inputbox">
       <label for="request_time">Время</label>
       <select name="request[time]" id="request_time">

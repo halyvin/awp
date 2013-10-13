@@ -69,6 +69,11 @@ $(document).ready(function(){
 
     var rfm = $("#request-form");
 
+    rfm.find("#request_day").datepicker($.extend({}, datapicker_defaults, {
+      minDate: 0,
+      maxDate: "+1Y"
+    }));
+
     var workerslist = rfm.find(".workers_select");
     workerslist.workers_select({
       onSelectChange: function() {
