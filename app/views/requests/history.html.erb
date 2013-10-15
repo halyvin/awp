@@ -1,4 +1,4 @@
-<div class="controls">
+<div class="controls search_bar">
   <%= form_tag '', method: "GET", id: "history-filter-form" do %>
     <div class="date_search button">
       Поиск по дате с:
@@ -9,10 +9,20 @@
       <input id="date-to" type="text" name="filter[date_to]" value="<%= date_for_to %>">
     </div>
     <div class="place_search button">
-      Поиск по адресу: <input type="search" name="filter[address]" value="<%= params[:filter] ? params[:filter][:address] : "" %>">
+      По адресу: <input type="search" name="filter[address]" value="<%= params[:filter] ? params[:filter][:address] : "" %>">
     </div>
-
-    <div class="task_buttons">
+    <div class="place_search button">
+      По логину: 
+      <select name="" id="">
+        <option value="">hren morjov</option>
+        <option value="">hren morjov2</option>
+        <option value="">hren morjov3</option>
+        <option value="">hren morjov4</option>
+        <option value="">hren morjov5</option>
+      </select>
+    </div>
+    <input type="submit" class="button edit search_button" value="Поиск">
+    <div class="task_buttons worker_search">
       <select style="display:none" name="filter[worker_ids][]" id="filter_worker_ids" multiple="multiple">
         <% seld_opts = [] %>
         <% seld_opts = params[:filter][:worker_ids] if params[:filter] && params[:filter][:worker_ids].present? %>
