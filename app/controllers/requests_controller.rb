@@ -37,6 +37,9 @@ class RequestsController < ApplicationController
           @requests = @requests.where("requests.address LIKE ?", "%#{params[:filter][:address]}%")
         end        
       end
+      if (params[:filter][:client].present?)
+        @requests = @requests.where(client_id: params[:filter][:client])
+      end
     end
     if (params[:filter] && params[:filter][:worker_ids].present?)
       @requests = @requests.includes(:workers).where(workers: { id: params[:filter][:worker_ids] })

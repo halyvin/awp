@@ -13,12 +13,11 @@
     </div>
     <div class="place_search button">
       По логину: 
-      <select name="" id="">
-        <option value="">hren morjov</option>
-        <option value="">hren morjov2</option>
-        <option value="">hren morjov3</option>
-        <option value="">hren morjov4</option>
-        <option value="">hren morjov5</option>
+      <select name="filter[client]">
+        <option value="">- - - - -</option>
+        <% Client.all.each do |client| %>
+          <option value="<%= client.id %>"<% if params[:filter] && client.id.to_s == params[:filter][:client] %> selected="selected" <% end %>><%= client.login %></option>
+        <% end %>
       </select>
     </div>
     <input type="submit" class="button edit search_button" value="Поиск">
