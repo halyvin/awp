@@ -6,15 +6,15 @@
 User.create!(name: "Трудяга Работяга", username: "worker", :email => 'worker@aws.com', :password => 'master', :password_confirmation => 'master', observer: true)
 
 Worker.create([
-  { name: "Гой А.", email: "halyvin@gmail.com", phonenum: "+79504033042" },
-  { name: "Репоух И.", email: "halyvin@gmail.com", phonenum: "+79504033042" },
-  { name: "Шупиков Д.", email: "halyvin@gmail.com", phonenum: "+79504033042" },
-  { name: "Лихоузов А.", email: "halyvin@gmail.com", phonenum: "+79504033042" }, 
-  { name: "Шупиков А.", email: "halyvin@gmail.com", phonenum: "+79504033042" },
-  { name: "Лоенюк А.", email: "halyvin@gmail.com", phonenum: "+79504033042" },
-  { name: "Киселев М.", email: "halyvin@gmail.com", phonenum: "+79504033042" },
-  { name: "Жихарев П.", email: "halyvin@gmail.com", phonenum: "+79504033042" },
-  { name: "Филиппов С.", email: "halyvin@gmail.com", phonenum: "+79504033042" }
+  { name: "Гой А.",      email: "halyvin@gmail.com", phonenum: "+79131937775" },
+  { name: "Репоух И.",   email: "halyvin@gmail.com", phonenum: "+79131937775" },
+  { name: "Шупиков Д.",  email: "halyvin@gmail.com", phonenum: "+79131937775" },
+  { name: "Лихоузов А.", email: "halyvin@gmail.com", phonenum: "+79131937775" }, 
+  { name: "Шупиков А.",  email: "halyvin@gmail.com", phonenum: "+79131937775" },
+  { name: "Лоенюк А.",   email: "halyvin@gmail.com", phonenum: "+79131937775" },
+  { name: "Киселев М.",  email: "halyvin@gmail.com", phonenum: "+79131937775" },
+  { name: "Жихарев П.",  email: "halyvin@gmail.com", phonenum: "+79131937775" },
+  { name: "Филиппов С.", email: "halyvin@gmail.com", phonenum: "+79131937775" }
 ])
 
 clients = Client.create([
