@@ -35,6 +35,10 @@ Email
 
 Для системы оповещения используется email от Яндекса. <awp-application@yandex.ru> : Hfy6834fYfjJ
 
+Для оповещения с помощью sms используем сервис [http://www.sms4b.ru/](sms4b.ru):
+логин: awp_SMS_sender ,
+пароль: Gr0moZEKa
+
 
 Application workflow
 --------------------

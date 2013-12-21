@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20131005194345) do
   create_table "workers", :force => true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "phonenum"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

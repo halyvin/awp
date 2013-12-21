@@ -62,7 +62,7 @@ class Request < ActiveRecord::Base
   end
 
   def notifications_send
-    if self.user.set_email? #|| self.user.set_sms?
+    if self.user.set_email? || self.user.set_sms?
       changes_list = self.changed_attributes
       workers_now = self.worker_ids
       unless workers_now.eql? @wrkrsids
@@ -77,21 +77,40 @@ class Request < ActiveRecord::Base
         workers_action << [wo, "removed"] unless workers_now.include?(wo)
       end
 
-      workers_by_emails = {}
-      workers_action.each do |wa|
-        wrkr = Worker.find(wa[0])
-        wemail = wrkr.email
-        if wemail.present?
-          workers_by_emails[wemail] = [] unless workers_by_emails[wemail]
-          workers_by_emails[wemail] << [ wrkr, wa[1] ]
+      if self.user.set_email?
+        workers_by_emails = {}
+        workers_action.each do |wa|
+          wrkr = Worker.find(wa[0])
+          wemail = wrkr.email
+          if wemail.present?
+            workers_by_emails[wemail] = [] unless workers_by_emails[wemail]
+            workers_by_emails[wemail] << [ wrkr, wa[1] ]
+          end
+        end
+        workers_by_emails.each_key do |wkey|
+          WorkersNotificationMailer.notifprep(wkey,
+                                              changes_list,
+                                              workers_by_emails[wkey],
+                                              self).deliver
         end
       end
 
-      workers_by_emails.each_key do |wkey|
-        WorkersNotificationMailer.notifprep(wkey,
-                                            changes_list,
-                                            workers_by_emails[wkey],
-                                            self).deliver
+      if self.user.set_sms?
+        phonenumbers_by_action = {}
+        workers_action.each do |wa|
+          wrkr = Worker.find(wa[0])
+          actn = wa[1]
+          phonenumbers_by_action[actn] = [] unless phonenumbers_by_action[actn]
+          wphonenum = wrkr.phonenum
+          if wphonenum.present? && !phonenumbers_by_action[actn].include?(wphonenum)
+            phonenumbers_by_action[actn] << wphonenum
+          end
+        end
+        phonenumbers_by_action.each_key do |wkey|
+          WorkersNotificationMailer.smsemail( wkey,
+                                              phonenumbers_by_action[wkey],
+                                              self).deliver
+        end
       end
 
     end

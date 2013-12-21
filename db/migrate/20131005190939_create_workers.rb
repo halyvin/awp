@@ -3,6 +3,7 @@ class CreateWorkers < ActiveRecord::Migration
     create_table :workers do |t|
       t.string :name
       t.string :email
+      t.string :phonenum
 
       t.timestamps
     end
